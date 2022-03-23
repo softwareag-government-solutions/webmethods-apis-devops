@@ -12,6 +12,7 @@
 THIS=`basename $0`
 THISDIR=`dirname $0`; THISDIR=`cd $THISDIR;pwd`
 BASEDIR="$THISDIR/.."
+JQ_EXE="$THISDIR/tools/jq"
 
 ##############################################################################
 ##
@@ -147,9 +148,9 @@ stage_api() {
 				echo aliasId: $aliasId
 
 				if [ -f "$STAGING_DIR/aliases.json" ] ; then
-					newAlias=$(jq -c --arg id "$aliasId" '.[] | select( .id==$id ) | .'$environment' + { id : $id }' $STAGING_DIR/aliases.json)
+					newAlias=$($JQ_EXE -c --arg id "$aliasId" '.[] | select( .id==$id ) | .'$environment' + { id : $id }' $STAGING_DIR/aliases.json)
 					echo $newAlias > $file.new
-					cat $file $file.new | jq -s add > $file
+					cat $file $file.new | $JQ_EXE -s add > $file
 					rm -f $file.new
 				fi
 			done
