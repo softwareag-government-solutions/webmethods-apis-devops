@@ -1,0 +1,77 @@
+{
+  "apiDefinition" : {
+    "info" : {
+      "version" : "1.0",
+      "title" : "MyTestAPI"
+    },
+    "serviceRegistryDisplayName" : "MyTestAPI_1.0",
+    "schemes" : [ ],
+    "security" : [ ],
+    "paths" : {
+      "/test" : {
+        "get" : {
+          "responses" : { },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "scopes" : [ "ReadOnly" ],
+          "requestBody" : {
+            "content" : { },
+            "name" : "requestBody"
+          }
+        },
+        "scopes" : [ ],
+        "displayName" : "Test",
+        "enabled" : true
+      }
+    },
+    "securityDefinitions" : { },
+    "definitions" : { },
+    "parameters" : { },
+    "baseUriParameters" : [ ],
+    "externalDocs" : [ ],
+    "servers" : [ {
+      "url" : "http://mytest.com",
+      "description" : "test",
+      "variables" : { }
+    } ],
+    "components" : {
+      "schemas" : { },
+      "responses" : { },
+      "parameters" : { },
+      "examples" : { },
+      "requestBodies" : { },
+      "headers" : { },
+      "links" : { },
+      "callbacks" : { }
+    },
+    "type" : "rest"
+  },
+  "nativeEndpoint" : [ {
+    "passSecurityHeaders" : true,
+    "uri" : "http://mytest.com",
+    "connectionTimeoutDuration" : 0,
+    "alias" : false
+  } ],
+  "apiName" : "MyTestAPI",
+  "apiVersion" : "1.0",
+  "maturityState" : "Beta",
+  "isActive" : false,
+  "type" : "REST",
+  "owner" : "Administrator",
+  "policies" : [ "c2fc6f73-8e2d-449c-840d-c0ddd2610948" ],
+  "tracingEnabled" : false,
+  "scopes" : [ {
+    "name" : "ReadOnly",
+    "description" : "",
+    "oAuth2ScopeName" : "422d6499-8f43-41c0-bac2-ad05b9efe24e",
+    "policies" : [ "49278e7c-3a63-44ec-b4b8-a89301cda838" ],
+    "mashedUpAPI" : false
+  } ],
+  "publishedPortals" : [ ],
+  "creationDate" : "2022-03-23 19:04:30 GMT",
+  "lastModified" : "2022-03-23 19:06:18 GMT",
+  "systemVersion" : 1,
+  "gatewayEndpoints" : { },
+  "id" : "a36e48f5-e441-451e-a7cb-6bb17153f68f"
+}

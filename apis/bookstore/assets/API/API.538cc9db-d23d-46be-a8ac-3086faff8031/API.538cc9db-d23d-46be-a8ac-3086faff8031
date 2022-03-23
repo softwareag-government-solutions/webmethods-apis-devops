@@ -111,10 +111,6 @@
           "consumes" : [ ],
           "produces" : [ "*/*" ],
           "parameters" : [ {
-            "schema" : {
-              "readOnly" : false,
-              "type" : "string"
-            },
             "in" : "path",
             "parameterSchema" : {
               "readOnly" : false,
@@ -154,10 +150,6 @@
           "operationId" : "updateBook",
           "consumes" : [ "application/json" ],
           "parameters" : [ {
-            "schema" : {
-              "readOnly" : false,
-              "type" : "string"
-            },
             "in" : "path",
             "parameterSchema" : {
               "readOnly" : false,
@@ -197,10 +189,6 @@
           "operationId" : "deleteBook",
           "consumes" : [ ],
           "parameters" : [ {
-            "schema" : {
-              "readOnly" : false,
-              "type" : "string"
-            },
             "in" : "path",
             "parameterSchema" : {
               "readOnly" : false,

@@ -22,8 +22,6 @@ echo -n "QA ENV Administrator password: "; read -s password; export APIGW_QA_DEP
 ```bash
 ./gateway_import_export_utils.sh --import --api_name bookstore --apigateway_url $APIGW_DEV_URL --username $APIGW_DEV_DEPLOY_USER --password $APIGW_DEV_DEPLOY_PASSWORD
 
-./gateway_import_export_utils.sh --import --api_name bookstore --apigateway_url $APIGW_DEV_URL --username $APIGW_DEV_DEPLOY_USER --password $APIGW_DEV_DEPLOY_PASSWORD
-
 ./gateway_import_export_utils.sh --import --api_name covid --apigateway_url $APIGW_DEV_URL --username $APIGW_DEV_DEPLOY_USER --password $APIGW_DEV_DEPLOY_PASSWORD
 
 ./gateway_import_export_utils.sh --import --api_name uszip --apigateway_url $APIGW_DEV_URL --username $APIGW_DEV_DEPLOY_USER --password $APIGW_DEV_DEPLOY_PASSWORD
@@ -50,16 +48,16 @@ These should usually be automated using a build pipeline tool like Jenkins...
 ## deploy environment-staged apis
 
 ```bash
-source common.lib; deploy_staged_api "bookstore" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
-source common.lib; deploy_staged_api "covid" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
-source common.lib; deploy_staged_api "uszip" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
-source common.lib; deploy_staged_api "sagtours" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
+source common.sh; deploy_staged_api "bookstore" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
+source common.sh; deploy_staged_api "covid" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
+source common.sh; deploy_staged_api "uszip" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
+source common.sh; deploy_staged_api "sagtours" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
 ```
 
 ### run tests
 
 ```bash
-source common.lib; run_test_suite "bookstore" "all" "qa_environment.json"
-source common.lib; run_test_suite "covid" "all" "qa_environment.json"
-source common.lib; run_test_suite "uszip" "all" "qa_environment.json"
+source common.sh; run_test_suite "bookstore" "all" "qa_environment.json"
+source common.sh; run_test_suite "covid" "all" "qa_environment.json"
+source common.sh; run_test_suite "uszip" "all" "qa_environment.json"
 ```

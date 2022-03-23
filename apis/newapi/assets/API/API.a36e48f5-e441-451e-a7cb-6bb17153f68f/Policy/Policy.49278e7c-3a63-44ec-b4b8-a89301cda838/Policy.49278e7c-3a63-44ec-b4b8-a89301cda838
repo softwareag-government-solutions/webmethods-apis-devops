@@ -1,7 +1,7 @@
 {
-  "id" : "44ecbae7-9ef3-4014-a5f8-34d3dd616d5a",
+  "id" : "49278e7c-3a63-44ec-b4b8-a89301cda838",
   "names" : [ {
-    "value" : "bookstore_scopePolicy",
+    "value" : "MyTestAPI_scopePolicy",
     "locale" : "English"
   } ],
   "descriptions" : [ {

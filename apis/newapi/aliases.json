@@ -1,0 +1,33 @@
+{
+  "bookstore_endpoint": {
+    "id" : "8d7ee422-252f-46a3-97d1-fff1f3d7a9b6",
+    "dev": {
+      "name" : "bookstore_endpoint",
+      "description" : "bookstore endpoint alias",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://localhost:7072"
+    },
+    "qa1": {
+      "name" : "bookstore_endpoint",
+      "description" : "bookstore endpoint alias for QA env - apiserver1",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://172.28.4.251:7072"
+    },
+    "qa2": {
+      "name" : "bookstore_endpoint",
+      "description" : "bookstore endpoint alias for QA env - apiserver1",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://172.28.5.141:7072"
+    },
+    "qalb": {
+      "name" : "bookstore_endpoint",
+      "description" : "bookstore endpoint alias for QA env - api LB",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://internal-repro1011-reproalb-1378200756.us-east-1.elb.amazonaws.com"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
-  "id" : "c218aa8b-8951-4c18-ad6d-b52d5ab43f3e",
+  "id" : "c2fc6f73-8e2d-449c-840d-c0ddd2610948",
   "names" : [ {
-    "value" : "Default Policy for API bookstore",
+    "value" : "Default Policy for API MyTestAPI",
     "locale" : "English"
   } ],
   "descriptions" : [ {
@@ -13,19 +13,19 @@
   },
   "policyEnforcements" : [ {
     "enforcements" : [ {
-      "enforcementObjectId" : "720d0726-3ef7-43af-b64a-9a23f1c169ca",
+      "enforcementObjectId" : "11f20118-549c-42b6-bd31-b774e1e4dce0",
       "order" : "0"
     } ],
     "stageKey" : "routing"
   }, {
     "enforcements" : [ {
-      "enforcementObjectId" : "5f3e7d5e-4554-4d95-832a-33f18e8a0bd5",
+      "enforcementObjectId" : "e0b510b6-df73-44d8-b037-f44a99534b56",
       "order" : "0"
     } ],
     "stageKey" : "IAM"
   }, {
     "enforcements" : [ {
-      "enforcementObjectId" : "a609984e-1eec-4862-a2bb-2cad266e206d",
+      "enforcementObjectId" : "ef13a41c-b89a-4338-8797-66ea79d74f75",
       "order" : "0"
     } ],
     "stageKey" : "transport"
