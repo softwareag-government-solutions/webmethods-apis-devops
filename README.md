@@ -43,15 +43,9 @@ echo -n "QA ENV Administrator password: "; read -s password; export APIGW_QA_DEP
 ./gateway_import_export_utils.sh --export --api_name sagtours --apigateway_url $APIGW_DEV_URL --username $APIGW_DEV_DEPLOY_USER --password $APIGW_DEV_DEPLOY_PASSWORD
 ```
 
-### run tests
+## Deploy 
 
-```bash
-source common.lib; run_test_suite "bookstore" "all" "dev_environment.json"
-source common.lib; run_test_suite "covid" "all" "dev_environment.json"
-source common.lib; run_test_suite "uszip" "all" "dev_environment.json"
-```
-
-## Deploy to QA
+These should usually be automated using a build pipeline tool like Jenkins...
 
 ## deploy environment-staged apis
 
