@@ -139,15 +139,15 @@ stage_api() {
 
 		## check if aliases file is defined
 		if [ -d "$API_ALIASES_DIR" ] ; then
-			echo "Parsing the Alias files in $API_ALIASES_DIR"
-			for file in $API_ALIASES_DIR/*; do
-				filename=$(basename $file)
-				echo filename: $filename
+			if [ -f "$STAGING_DIR/aliases.json" ] ; then
+				echo "Parsing the Alias files in $API_ALIASES_DIR"
+				for file in $API_ALIASES_DIR/*; do
+					filename=$(basename $file)
+					echo filename: $filename
 
-				aliasId="${filename#*.}"
-				echo aliasId: $aliasId
+					aliasId="${filename#*.}"
+					echo aliasId: $aliasId
 
-				if [ -f "$STAGING_DIR/aliases.json" ] ; then
 					## first, let's check if alias exists...if not, let's fail??
 					newAliasEnv=$($JQ_EXE -c --arg id "$aliasId" '.[] | select( .id==$id ) | .'$environment $STAGING_DIR/aliases.json)
 					if [ "$newAliasEnv" != "null" ] ; then
@@ -160,8 +160,10 @@ stage_api() {
 					else
 						echo "No matching alias id $aliasId for environment $environment...Not doing any alias replacement and ignoring!"
 					fi
-				fi
-			done
+				done
+			else
+				echo "No environment-aliases file found in $STAGING_DIR/aliases.json...Not doing any alias replacement and ignoring!"
+			fi
 
 			## final cleanup of the ACDL file for the alias properties
 			## TODO: this is not ideal...defintely would be best using XML parser or other technique...
