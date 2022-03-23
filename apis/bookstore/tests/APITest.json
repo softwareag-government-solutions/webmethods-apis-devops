@@ -1,0 +1,108 @@
+{
+	"variables": [],
+	"info": {
+		"name": "BookStoreAPITests",
+		"description": "Bookstore API Tests",
+		"_postman_id": "968d48b1-ba88-46cf-9983-55bff8359971",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"let apiResponse=JSON.parse(responseBody);",
+							"let books = apiResponse;",
+							"pm.test(\"List of books greater than 0\", function () {",
+							"    pm.expect(books.length).to.be.greaterThan(0);",
+							"});",
+							"",
+							"postman.setNextRequest(null);",
+							"",
+							"if (books.length > 0) {",
+							"    if (books[0] != undefined && books[0] != null && books[0].id != undefined && books[0].id != null ){",
+							"        console.log(\"Single Book\");",
+							"        console.log(\"id: \" + books[0].id);",
+							"        console.log(\"title: \" + books[0].title);",
+							"        ",
+							"        pm.environment.set(\"bookId\", books[0].id);",
+							"        ",
+							"        postman.setNextRequest(\"Get One Book\");",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/gateway/bookstore/1.0/books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gateway",
+						"bookstore",
+						"1.0",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"let bookId = pm.environment.get(\"bookId\");",
+							"console.log(\"Get book with bookId=\" + bookId);",
+							"",
+							"let apiResponse=JSON.parse(responseBody);",
+							"let books = apiResponse;",
+							"",
+							"pm.test(\"Book id must match\", function () {",
+							"    pm.expect(apiResponse.id).to.be.eq(bookId);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/gateway/bookstore/1.0/books/{{bookId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gateway",
+						"bookstore",
+						"1.0",
+						"books",
+						"{{bookId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

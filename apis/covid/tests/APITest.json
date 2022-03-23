@@ -1,0 +1,58 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CovidReportAPITests",
+		"description": "CovidReport API Tests",
+		"_postman_id": "968d48b1-ba88-46cf-9983-55bff8359971",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get covid report for a US zip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"let apiResponse=JSON.parse(responseBody);",
+							"let items = apiResponse;",
+							"pm.test(\"List of results greater than 0\", function () {",
+							"    pm.expect(items.length).to.be.greaterThan(0);",
+							"});",
+							"",
+							"postman.setNextRequest(null);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/gateway/covid/1.0/findCovidByZip?zip_code=22201",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gateway",
+						"covid",
+						"1.0",
+						"findCovidByZip"
+					],
+					"query": [
+						{
+							"key": "zip_code",
+							"value": "22201"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

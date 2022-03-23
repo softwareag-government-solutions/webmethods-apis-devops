@@ -1,0 +1,16 @@
+{
+  "id": "f313be5f-2640-22f7-36b6-3e79bba3c9e2",
+  "name": "QAEnviroment",
+  "values": [
+	{
+      "enabled": true,
+      "key": "baseUrl",
+      "value": "http://internal-repro1011-reproalb-1378200756.us-east-1.elb.amazonaws.com",
+      "type": "text"
+    }
+  ],
+  "timestamp": 1587036498482,
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2020-04-16T11:32:40.730Z",
+  "_postman_exported_using": "Postman/5.5.5"
+}

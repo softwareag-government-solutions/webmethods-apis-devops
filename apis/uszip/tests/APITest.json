@@ -1,0 +1,64 @@
+{
+	"variables": [],
+	"info": {
+		"name": "USZipAPITests",
+		"description": "UsZip API Tests",
+		"_postman_id": "968d48b1-ba88-46cf-9983-55bff8359971",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get US Zip based on City/State",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"let apiResponse=JSON.parse(responseBody);",
+							"let zip = apiResponse.zip;",
+							"pm.test(\"Zip shall not be null\", function () {",
+							"    pm.expect(zip).is.not.oneOf([null, undefined]);",
+							"});",
+							"",
+							"postman.setNextRequest(null);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/gateway/uszip/1.0/findZip/:city/:state",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"gateway",
+						"uszip",
+						"1.0",
+						"findZip",
+						":city",
+						":state"
+					],
+					"variable": [
+						{
+							"key": "city",
+							"value": "Rockville"
+						},
+						{
+							"key": "state",
+							"value": "MD"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

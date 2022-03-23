@@ -1,0 +1,8 @@
+{
+  "id" : "8d7ee422-252f-46a3-97d1-fff1f3d7a9b6",
+  "name" : "bookstore_endpoint",
+  "description" : "bookstore endpoint alias",
+  "type" : "simple",
+  "owner" : "Administrator",
+  "value" : "http://localhost:7072"
+}

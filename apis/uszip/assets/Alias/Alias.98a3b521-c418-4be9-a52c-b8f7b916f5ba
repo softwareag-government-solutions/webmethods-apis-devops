@@ -1,0 +1,8 @@
+{
+  "id" : "98a3b521-c418-4be9-a52c-b8f7b916f5ba",
+  "name" : "uszip_endpoint",
+  "description" : "uszip endpoint alias",
+  "type" : "simple",
+  "owner" : "Administrator",
+  "value" : "http://localhost:7073"
+}

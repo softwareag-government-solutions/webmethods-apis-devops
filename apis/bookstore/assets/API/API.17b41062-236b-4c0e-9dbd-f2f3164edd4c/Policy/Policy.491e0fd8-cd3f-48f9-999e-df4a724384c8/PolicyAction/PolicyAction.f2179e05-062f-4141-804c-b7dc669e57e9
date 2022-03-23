@@ -1,0 +1,43 @@
+{
+  "id" : "f2179e05-062f-4141-804c-b7dc669e57e9",
+  "names" : [ {
+    "value" : "Data Masking",
+    "locale" : "en"
+  } ],
+  "templateKey" : "responseDataMasking",
+  "parameters" : [ {
+    "templateKey" : "sameForTransactionalLogging",
+    "values" : [ "true" ]
+  }, {
+    "templateKey" : "applyForPayload",
+    "values" : [ "true" ]
+  }, {
+    "templateKey" : "jpathMasking",
+    "parameters" : [ {
+      "templateKey" : "maskingCriteria",
+      "parameters" : [ {
+        "templateKey" : "action",
+        "values" : [ "$[*].id" ]
+      }, {
+        "templateKey" : "maskingType",
+        "values" : [ "mask" ]
+      }, {
+        "templateKey" : "maskValue",
+        "values" : [ "********" ]
+      } ]
+    }, {
+      "templateKey" : "maskingCriteria",
+      "parameters" : [ {
+        "templateKey" : "action",
+        "values" : [ "$.id" ]
+      }, {
+        "templateKey" : "maskingType",
+        "values" : [ "mask" ]
+      }, {
+        "templateKey" : "maskValue",
+        "values" : [ "********" ]
+      } ]
+    } ]
+  } ],
+  "active" : false
+}

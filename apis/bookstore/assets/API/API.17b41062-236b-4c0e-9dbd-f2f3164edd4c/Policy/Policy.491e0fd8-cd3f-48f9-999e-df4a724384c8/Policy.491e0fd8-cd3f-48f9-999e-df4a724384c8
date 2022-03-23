@@ -1,0 +1,40 @@
+{
+  "id" : "491e0fd8-cd3f-48f9-999e-df4a724384c8",
+  "names" : [ {
+    "value" : "Default Policy for API bookstore",
+    "locale" : "English"
+  } ],
+  "descriptions" : [ {
+    "value" : "",
+    "locale" : "English"
+  } ],
+  "scope" : {
+    "scopeConditions" : [ ]
+  },
+  "policyEnforcements" : [ {
+    "enforcements" : [ {
+      "enforcementObjectId" : "b403f730-ef94-44af-802f-c934860427a7",
+      "order" : "0"
+    } ],
+    "stageKey" : "routing"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "6a128c58-033c-49f0-a701-5da189d38c97",
+      "order" : "0"
+    } ],
+    "stageKey" : "transport"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "f2179e05-062f-4141-804c-b7dc669e57e9",
+      "order" : "0"
+    }, {
+      "enforcementObjectId" : "2a480dd9-e173-4f9b-a9cc-e67336824461",
+      "order" : "1"
+    } ],
+    "stageKey" : "responseProcessing"
+  } ],
+  "policyScope" : "SERVICE",
+  "global" : false,
+  "systemPolicy" : false,
+  "active" : false
+}

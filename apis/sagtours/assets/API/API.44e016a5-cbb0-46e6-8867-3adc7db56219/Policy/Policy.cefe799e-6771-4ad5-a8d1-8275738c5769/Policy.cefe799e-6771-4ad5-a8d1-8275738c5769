@@ -1,0 +1,31 @@
+{
+  "id" : "cefe799e-6771-4ad5-a8d1-8275738c5769",
+  "names" : [ {
+    "value" : "Default Policy for API SAGTours",
+    "locale" : "English"
+  } ],
+  "descriptions" : [ {
+    "value" : "",
+    "locale" : "English"
+  } ],
+  "scope" : {
+    "scopeConditions" : [ ]
+  },
+  "policyEnforcements" : [ {
+    "enforcements" : [ {
+      "enforcementObjectId" : "2a4aa251-d5b4-4b00-8c18-41ed93cc86c6",
+      "order" : "0"
+    } ],
+    "stageKey" : "routing"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "85258361-87c9-43a6-985d-088f9500e0d8",
+      "order" : "0"
+    } ],
+    "stageKey" : "transport"
+  } ],
+  "policyScope" : "SERVICE",
+  "global" : false,
+  "active" : false,
+  "systemPolicy" : false
+}

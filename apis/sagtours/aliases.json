@@ -1,0 +1,19 @@
+{
+  "sagtours_endpoint": {
+    "id" : "c0e43c19-2298-4634-bbd7-0c32eea7bcfa",
+    "dev": {
+      "name" : "SAGTours_endpoint",
+      "description" : "SAGTours API endpoint alias",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://localhost:5555"
+    },
+    "qa": {
+      "name" : "SAGTours_endpoint",
+      "description" : "SAGTours API endpoint alias for QA env",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://webmethods-sampleapis-sagtours:5555"
+    }
+  }
+}

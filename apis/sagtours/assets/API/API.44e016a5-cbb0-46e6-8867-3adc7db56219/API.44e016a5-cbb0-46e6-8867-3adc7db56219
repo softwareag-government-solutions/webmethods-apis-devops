@@ -1,0 +1,119 @@
+{
+  "apiDefinition" : {
+    "wsdl" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<wsdl:definitions name=\"getYacht\" targetNamespace=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:mime=\"http://schemas.xmlsoap.org/wsdl/mime/\" xmlns:tns=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:http=\"http://schemas.xmlsoap.org/wsdl/http/\" xmlns:soap12=\"http://schemas.xmlsoap.org/wsdl/soap12/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\">\n  <wsdl:types>\n    <xsd:schema targetNamespace=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:tns=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\">\n          <xsd:complexType name=\"getYachtFromDB\">\n            <xsd:sequence>\n              <xsd:element name=\"index\" nillable=\"true\" type=\"xsd:string\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType name=\"getYachtFromDBResponse\">\n            <xsd:sequence>\n              <xsd:element name=\"yacht\" nillable=\"true\" type=\"tns:Yacht\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType name=\"Yacht\">\n            <xsd:sequence>\n              <xsd:element name=\"name\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"ownerid\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"properties\" nillable=\"true\" type=\"tns:properties\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType name=\"properties\">\n            <xsd:sequence>\n              <xsd:element name=\"description\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"type\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"length\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"width\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"draft\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"sailsurface\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"motor\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"headroom\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"bunks\" nillable=\"true\" type=\"xsd:string\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n        \t\t\t<xsd:element name=\"getYachtFromDB\" type=\"tns:getYachtFromDB\"/>\n\t\t\t<xsd:element name=\"getYachtFromDBResponse\" type=\"tns:getYachtFromDBResponse\"/>\n\t</xsd:schema>\n  </wsdl:types>\n  <wsdl:message name=\"getYacht_PortType_getYachtFromDBResponse\">\n    <wsdl:part name=\"parameters\" element=\"tns:getYachtFromDBResponse\">\n    </wsdl:part>\n  </wsdl:message>\n  <wsdl:message name=\"getYacht_PortType_getYachtFromDB\">\n    <wsdl:part name=\"parameters\" element=\"tns:getYachtFromDB\">\n    </wsdl:part>\n  </wsdl:message>\n  <wsdl:portType name=\"getYacht_PortType\">\n    <wsdl:operation name=\"getYachtFromDB\">\n      <wsdl:input message=\"tns:getYacht_PortType_getYachtFromDB\">\n    </wsdl:input>\n      <wsdl:output message=\"tns:getYacht_PortType_getYachtFromDBResponse\">\n    </wsdl:output>\n    </wsdl:operation>\n  </wsdl:portType>\n  <wsdl:binding name=\"SAGTours_WEBServices_YachtService_ws_getYacht_Binder\" type=\"tns:getYacht_PortType\">\n    <soap:binding style=\"document\" transport=\"http://schemas.xmlsoap.org/soap/http\"/>\n    <wsdl:operation name=\"getYachtFromDB\">\n      <soap:operation soapAction=\"SAGTours_WEBServices_YachtService_ws_getYacht_Binder_getYachtFromDB\" style=\"document\"/>\n      <wsdl:input>\n        <soap:body parts=\"parameters\" use=\"literal\"/>\n      </wsdl:input>\n      <wsdl:output>\n        <soap:body parts=\"parameters\" use=\"literal\"/>\n      </wsdl:output>\n    </wsdl:operation>\n  </wsdl:binding>\n  <wsdl:service name=\"getYacht\">\n    <wsdl:port name=\"SAGTours_WEBServices_YachtService_ws_getYacht_Port\" binding=\"tns:SAGTours_WEBServices_YachtService_ws_getYacht_Binder\">\n      <soap:address location=\"${SAGTours_endpoint}/ws/SAGTours.WEBServices.YachtService.ws:getYacht/SAGTours_WEBServices_YachtService_ws_getYacht_Port\"/>\n    </wsdl:port>\n  </wsdl:service>\n</wsdl:definitions>\n",
+    "baseWsdlUri" : "/opt/softwareag/IntegrationServer/instances/default/temp/1647965784294/",
+    "nativeUri" : [ "${SAGTours_endpoint}/ws/SAGTours.WEBServices.YachtService.ws:getYacht/SAGTours_WEBServices_YachtService_ws_getYacht_Port" ],
+    "serviceName" : "SAGTours",
+    "operationsInfo" : [ {
+      "name" : "getYachtFromDB",
+      "namespace" : "http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws",
+      "enabled" : true,
+      "bindings" : [ {
+        "name" : "SAGTours_WEBServices_YachtService_ws_getYacht_Binder",
+        "type" : "soap",
+        "specifier" : "",
+        "inputMessage" : "<sag:getYachtFromDB xmlns:sag=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\">\n  <index>string</index>\n</sag:getYachtFromDB>",
+        "outputMessage" : "<sag:getYachtFromDBResponse xmlns:sag=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\">\n  <yacht>\n    <name>string</name>\n    <ownerid>string</ownerid>\n    <properties>\n      <description>string</description>\n      <type>string</type>\n      <length>string</length>\n      <width>string</width>\n      <draft>string</draft>\n      <sailsurface>string</sailsurface>\n      <motor>string</motor>\n      <headroom>string</headroom>\n      <bunks>string</bunks>\n    </properties>\n  </yacht>\n</sag:getYachtFromDBResponse>"
+      } ],
+      "mockedResponses" : { },
+      "mockedConditionsBasedCustomResponsesList" : [ ],
+      "defined" : true,
+      "soapAction" : "SAGTours_WEBServices_YachtService_ws_getYacht_Binder_getYachtFromDB",
+      "isRESTInvokeEnabled" : false,
+      "restEnabledPath" : {
+        "post" : {
+          "consumes" : [ "application/json", "application/xml" ],
+          "produces" : [ "application/json", "application/xml" ],
+          "responses" : {
+            "200" : {
+              "content" : {
+                "application/xml" : {
+                  "schema" : {
+                    "type" : "gateway",
+                    "schema" : "{}"
+                  },
+                  "examples" : { },
+                  "example" : "<sag:getYachtFromDBResponse xmlns:sag=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\">\n  <yacht>\n    <name>string</name>\n    <ownerid>string</ownerid>\n    <properties>\n      <description>string</description>\n      <type>string</type>\n      <length>string</length>\n      <width>string</width>\n      <draft>string</draft>\n      <sailsurface>string</sailsurface>\n      <motor>string</motor>\n      <headroom>string</headroom>\n      <bunks>string</bunks>\n    </properties>\n  </yacht>\n</sag:getYachtFromDBResponse>"
+                },
+                "application/json" : {
+                  "schema" : {
+                    "type" : "gateway",
+                    "schema" : "{}"
+                  },
+                  "examples" : { },
+                  "example" : "{\"getYachtFromDBResponse\":{\"yacht\":{\"name\":\"string\",\"ownerid\":\"string\",\"properties\":{\"description\":\"string\",\"type\":\"string\",\"length\":\"string\",\"width\":\"string\",\"draft\":\"string\",\"sailsurface\":\"string\",\"motor\":\"string\",\"headroom\":\"string\",\"bunks\":\"string\"}}}}"
+                }
+              },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "requestBody" : {
+            "content" : {
+              "application/xml" : {
+                "examples" : { },
+                "example" : "<sag:getYachtFromDB xmlns:sag=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\">\n  <index>string</index>\n</sag:getYachtFromDB>"
+              },
+              "application/json" : {
+                "examples" : { },
+                "example" : "{\"getYachtFromDB\":{\"index\":\"string\"}}"
+              }
+            },
+            "name" : "requestBody"
+          }
+        },
+        "parameters" : [ ],
+        "enabled" : true,
+        "name" : "getYachtFromDB",
+        "invokePath" : "/getYachtFromDB"
+      },
+      "scopes" : [ ],
+      "tags" : [ ],
+      "headers" : [ ]
+    } ],
+    "type" : "soap",
+    "serviceRegistryDisplayName" : "SAGTours_1.0",
+    "operationPolicies" : {
+      "getYachtFromDB" : ""
+    },
+    "isRESTInvokeEnabled" : false,
+    "soapToRestConfigurations" : {
+      "useSchemaForTransformation" : true,
+      "removeRootElement" : false,
+      "useDefaultElements" : false
+    }
+  },
+  "nativeEndpoint" : [ {
+    "passSecurityHeaders" : true,
+    "uri" : "${SAGTours_endpoint}/ws/SAGTours.WEBServices.YachtService.ws:getYacht/SAGTours_WEBServices_YachtService_ws_getYacht_Port",
+    "connectionTimeoutDuration" : 0,
+    "alias" : false
+  } ],
+  "apiName" : "SAGTours",
+  "apiVersion" : "1.0",
+  "apiDescription" : "SAGTours Demo APIs\n\n",
+  "maturityState" : "Test",
+  "isActive" : true,
+  "type" : "SOAP",
+  "owner" : "fabien.sanglier@ad.clouddemo.saggov.local",
+  "policies" : [ "cefe799e-6771-4ad5-a8d1-8275738c5769" ],
+  "referencedFiles" : {
+    "SAGTours.wsdl" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<wsdl:definitions name=\"getYacht\" targetNamespace=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:mime=\"http://schemas.xmlsoap.org/wsdl/mime/\" xmlns:tns=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:http=\"http://schemas.xmlsoap.org/wsdl/http/\" xmlns:soap12=\"http://schemas.xmlsoap.org/wsdl/soap12/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\">\n  <wsdl:types>\n    <xsd:schema targetNamespace=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:tns=\"http://TrainHost.webmethods.com/SAGTours.WEBServices.YachtService.ws\">\n          <xsd:complexType name=\"getYachtFromDB\">\n            <xsd:sequence>\n              <xsd:element name=\"index\" nillable=\"true\" type=\"xsd:string\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType name=\"getYachtFromDBResponse\">\n            <xsd:sequence>\n              <xsd:element name=\"yacht\" nillable=\"true\" type=\"tns:Yacht\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType name=\"Yacht\">\n            <xsd:sequence>\n              <xsd:element name=\"name\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"ownerid\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"properties\" nillable=\"true\" type=\"tns:properties\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n          <xsd:complexType name=\"properties\">\n            <xsd:sequence>\n              <xsd:element name=\"description\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"type\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"length\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"width\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"draft\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"sailsurface\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"motor\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"headroom\" nillable=\"true\" type=\"xsd:string\"/>\n              <xsd:element name=\"bunks\" nillable=\"true\" type=\"xsd:string\"/>\n            </xsd:sequence>\n          </xsd:complexType>\n        \t\t\t<xsd:element name=\"getYachtFromDB\" type=\"tns:getYachtFromDB\"/>\n\t\t\t<xsd:element name=\"getYachtFromDBResponse\" type=\"tns:getYachtFromDBResponse\"/>\n\t</xsd:schema>\n  </wsdl:types>\n  <wsdl:message name=\"getYacht_PortType_getYachtFromDBResponse\">\n    <wsdl:part name=\"parameters\" element=\"tns:getYachtFromDBResponse\">\n    </wsdl:part>\n  </wsdl:message>\n  <wsdl:message name=\"getYacht_PortType_getYachtFromDB\">\n    <wsdl:part name=\"parameters\" element=\"tns:getYachtFromDB\">\n    </wsdl:part>\n  </wsdl:message>\n  <wsdl:portType name=\"getYacht_PortType\">\n    <wsdl:operation name=\"getYachtFromDB\">\n      <wsdl:input message=\"tns:getYacht_PortType_getYachtFromDB\">\n    </wsdl:input>\n      <wsdl:output message=\"tns:getYacht_PortType_getYachtFromDBResponse\">\n    </wsdl:output>\n    </wsdl:operation>\n  </wsdl:portType>\n  <wsdl:binding name=\"SAGTours_WEBServices_YachtService_ws_getYacht_Binder\" type=\"tns:getYacht_PortType\">\n    <soap:binding style=\"document\" transport=\"http://schemas.xmlsoap.org/soap/http\"/>\n    <wsdl:operation name=\"getYachtFromDB\">\n      <soap:operation soapAction=\"SAGTours_WEBServices_YachtService_ws_getYacht_Binder_getYachtFromDB\" style=\"document\"/>\n      <wsdl:input>\n        <soap:body parts=\"parameters\" use=\"literal\"/>\n      </wsdl:input>\n      <wsdl:output>\n        <soap:body parts=\"parameters\" use=\"literal\"/>\n      </wsdl:output>\n    </wsdl:operation>\n  </wsdl:binding>\n  <wsdl:service name=\"getYacht\">\n    <wsdl:port name=\"SAGTours_WEBServices_YachtService_ws_getYacht_Port\" binding=\"tns:SAGTours_WEBServices_YachtService_ws_getYacht_Binder\">\n      <soap:address location=\"${SAGTours_endpoint}/ws/SAGTours.WEBServices.YachtService.ws:getYacht/SAGTours_WEBServices_YachtService_ws_getYacht_Port\"/>\n    </wsdl:port>\n  </wsdl:service>\n</wsdl:definitions>\n"
+  },
+  "tracingEnabled" : false,
+  "scopes" : [ ],
+  "publishedPortals" : [ ],
+  "creationDate" : "2021-03-16 03:52:12 GMT",
+  "lastModified" : "2021-08-27 14:51:26 GMT",
+  "systemVersion" : 1,
+  "gatewayEndpoints" : { },
+  "deployments" : [ "APIGateway" ],
+  "microgatewayEndpoints" : [ ],
+  "appMeshEndpoints" : [ ],
+  "id" : "44e016a5-cbb0-46e6-8867-3adc7db56219"
+}

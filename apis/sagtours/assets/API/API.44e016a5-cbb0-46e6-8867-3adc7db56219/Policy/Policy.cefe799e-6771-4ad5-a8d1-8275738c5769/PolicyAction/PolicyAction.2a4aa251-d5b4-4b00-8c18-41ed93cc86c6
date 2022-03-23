@@ -1,0 +1,19 @@
+{
+  "id" : "2a4aa251-d5b4-4b00-8c18-41ed93cc86c6",
+  "names" : [ {
+    "value" : "Straight Through Routing",
+    "locale" : "en"
+  } ],
+  "templateKey" : "straightThroughRouting",
+  "parameters" : [ {
+    "templateKey" : "endpointUri",
+    "values" : [ "${SAGTours_endpoint}/ws/SAGTours.WEBServices.YachtService.ws:getYacht/SAGTours_WEBServices_YachtService_ws_getYacht_Port" ]
+  }, {
+    "templateKey" : "soapOptimize",
+    "values" : [ "None" ]
+  }, {
+    "templateKey" : "passSecurityHeaders",
+    "values" : [ "true" ]
+  } ],
+  "active" : false
+}

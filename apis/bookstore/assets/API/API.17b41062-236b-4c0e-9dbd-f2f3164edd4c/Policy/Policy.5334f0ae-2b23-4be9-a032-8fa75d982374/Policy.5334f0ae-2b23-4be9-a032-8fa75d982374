@@ -1,0 +1,19 @@
+{
+  "id" : "5334f0ae-2b23-4be9-a032-8fa75d982374",
+  "names" : [ {
+    "value" : "bookstore_scopePolicy",
+    "locale" : "English"
+  } ],
+  "descriptions" : [ {
+    "value" : "",
+    "locale" : "English"
+  } ],
+  "scope" : {
+    "scopeConditions" : [ ]
+  },
+  "policyEnforcements" : [ ],
+  "policyScope" : "SCOPE",
+  "global" : false,
+  "systemPolicy" : false,
+  "active" : false
+}

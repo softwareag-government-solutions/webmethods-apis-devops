@@ -1,0 +1,163 @@
+{
+  "apiDefinition" : {
+    "info" : {
+      "version" : "v0",
+      "title" : "OpenAPI definition"
+    },
+    "serviceRegistryDisplayName" : "covid_1.0",
+    "schemes" : [ ],
+    "security" : [ ],
+    "paths" : {
+      "/findCovidByZip" : {
+        "get" : {
+          "operationId" : "findCovidByZip",
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "query",
+            "parameterSchema" : {
+              "type" : "string"
+            },
+            "name" : "zip_code",
+            "type" : "string",
+            "required" : true
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "default response",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "gateway",
+                    "schema" : "{\"type\":\"array\",\"items\":{\"type\":\"object\",\"$ref\":\"#/components/schemas/Covid\"}}"
+                  },
+                  "examples" : { }
+                }
+              },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "scopes" : [ ],
+          "requestBody" : {
+            "content" : { },
+            "name" : "findCovidByZip"
+          }
+        },
+        "scopes" : [ ],
+        "displayName" : "/findCovidByZip",
+        "enabled" : true
+      },
+      "/findCovidByZipReportDate" : {
+        "get" : {
+          "operationId" : "findCovidByZipAndReportDate",
+          "produces" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "query",
+            "parameterSchema" : {
+              "type" : "string"
+            },
+            "name" : "zip_code",
+            "type" : "string",
+            "required" : true
+          }, {
+            "in" : "query",
+            "parameterSchema" : {
+              "type" : "string"
+            },
+            "name" : "report_date",
+            "type" : "string",
+            "required" : true
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "default response",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "type" : "gateway",
+                    "schema" : "{\"type\":\"array\",\"items\":{\"type\":\"object\",\"$ref\":\"#/components/schemas/Covid\"}}"
+                  },
+                  "examples" : { }
+                }
+              },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "scopes" : [ ],
+          "requestBody" : {
+            "content" : { },
+            "name" : "findCovidByZipAndReportDate"
+          }
+        },
+        "scopes" : [ ],
+        "displayName" : "/findCovidByZipReportDate",
+        "enabled" : true
+      }
+    },
+    "securityDefinitions" : { },
+    "definitions" : { },
+    "parameters" : { },
+    "baseUriParameters" : [ ],
+    "externalDocs" : [ ],
+    "servers" : [ {
+      "url" : "${covid_endpoint}/covid",
+      "description" : "Generated server url",
+      "variables" : { }
+    } ],
+    "components" : {
+      "schemas" : {
+        "Covid" : {
+          "type" : "gateway",
+          "schema" : "{\"type\":\"object\",\"properties\":{\"number_of_cases\":{\"type\":\"string\"},\"number_of_pcr_testing\":{\"type\":\"string\"},\"report_date\":{\"type\":\"string\"},\"zip_code\":{\"type\":\"string\"}}}"
+        }
+      },
+      "responses" : { },
+      "parameters" : { },
+      "examples" : { },
+      "requestBodies" : { },
+      "headers" : { },
+      "links" : { },
+      "callbacks" : { }
+    },
+    "type" : "rest"
+  },
+  "nativeEndpoint" : [ {
+    "passSecurityHeaders" : true,
+    "uri" : "${covid_endpoint}/covid",
+    "connectionTimeoutDuration" : 0,
+    "alias" : false
+  } ],
+  "apiName" : "covid",
+  "apiVersion" : "1.0",
+  "apiDescription" : "covid apis",
+  "maturityState" : "Beta",
+  "isActive" : true,
+  "type" : "REST",
+  "owner" : "fabien.sanglier@ad.clouddemo.saggov.local",
+  "policies" : [ "a57444ec-4a38-43ca-94d9-df04e5ee35f8" ],
+  "referencedFiles" : {
+    "covid" : "{\"openapi\":\"3.0.1\",\"info\":{\"title\":\"OpenAPI definition\",\"version\":\"v0\"},\"servers\":[{\"url\":\"http://intserver1.irsrepro.clouddemo.saggov.local:7071/covid\",\"description\":\"Generated server url\"}],\"paths\":{\"/findCovidByZip\":{\"get\":{\"operationId\":\"findCovidByZip\",\"parameters\":[{\"name\":\"zip_code\",\"in\":\"query\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"description\":\"default response\",\"content\":{\"application/json\":{\"schema\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/Covid\"}}}}}}}},\"/findCovidByZipReportDate\":{\"get\":{\"operationId\":\"findCovidByZipAndReportDate\",\"parameters\":[{\"name\":\"zip_code\",\"in\":\"query\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"name\":\"report_date\",\"in\":\"query\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"description\":\"default response\",\"content\":{\"application/json\":{\"schema\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/Covid\"}}}}}}}}},\"components\":{\"schemas\":{\"Covid\":{\"type\":\"object\",\"properties\":{\"report_date\":{\"type\":\"string\"},\"zip_code\":{\"type\":\"string\"},\"number_of_cases\":{\"type\":\"string\"},\"number_of_pcr_testing\":{\"type\":\"string\"}}}}}}\n"
+  },
+  "tracingEnabled" : false,
+  "scopes" : [ ],
+  "publishedPortals" : [ ],
+  "creationDate" : "2021-03-16 02:01:48 GMT",
+  "lastModified" : "2021-05-27 01:08:26 GMT",
+  "systemVersion" : 1,
+  "gatewayEndpoints" : { },
+  "deployments" : [ "APIGateway" ],
+  "microgatewayEndpoints" : [ ],
+  "appMeshEndpoints" : [ ],
+  "id" : "fa40d7d9-3f6a-488f-bc4a-539c493f4826"
+}

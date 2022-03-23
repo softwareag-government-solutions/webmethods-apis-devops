@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<asset_composite name="APIGatewayAssets" displayName="Assets for API Gateway" runtimeVersion="10.11" targetNamespace="http://namespaces.softwareag.com/webMethods/APIGateway" xmlns="http://namespaces.softwareag.com/acdl/1.0" xmlns:EDA="http://namespaces.softwareag.com/webMethods/EDA" xmlns:MWS="http://namespaces.softwareag.com/webMethods/MWS" xmlns:IS="http://namespaces.softwareag.com/webMethods/IS" xmlns:APIPORTAL="http://namespaces.softwareag.com/webMethods/APIPORTAL" xmlns:AgileApps="http://namespaces.softwareag.com/webMethods/AgileApps" xmlns:BROKER="http://namespaces.softwareag.com/webMethods/BROKER" xmlns:implDetails="http://namespaces.softwareag.com/acdl/implDetails" xmlns:UniversalMessaging="http://namespaces.softwareag.com/webMethods/UniversalMessaging" xmlns:TN="http://namespaces.softwareag.com/webMethods/TN" xmlns:RULES="http://namespaces.softwareag.com/webMethods/RULES" xmlns:BPM="http://namespaces.softwareag.com/webMethods/BPM" xmlns:Optimize="http://namespaces.softwareag.com/webMethods/Optimize">
+    <buildInfo name="BuildTimestamp" value="2022-03-22T16:35:37"/>
+    <asset name="API.44e016a5-cbb0-46e6-8867-3adc7db56219" displayName="SAGTours[1.0]" isDeployable="true">
+        <implementation.generic type="API"/>
+        <dependsOn>APIGateway:Policy.cefe799e-6771-4ad5-a8d1-8275738c5769</dependsOn>
+    </asset>
+    <asset name="Policy.cefe799e-6771-4ad5-a8d1-8275738c5769" displayName="Policy For API SAGTours[1.0]" isDeployable="true">
+        <implementation.generic type="Policy"/>
+        <dependsOn>APIGateway:PolicyAction.2a4aa251-d5b4-4b00-8c18-41ed93cc86c6</dependsOn>
+        <dependsOn>APIGateway:PolicyAction.85258361-87c9-43a6-985d-088f9500e0d8</dependsOn>
+    </asset>
+    <asset name="PolicyAction.2a4aa251-d5b4-4b00-8c18-41ed93cc86c6" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API SAGTours[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+        <dependsOn>APIGateway:Alias.c0e43c19-2298-4634-bbd7-0c32eea7bcfa</dependsOn>
+    </asset>
+    <asset name="Alias.c0e43c19-2298-4634-bbd7-0c32eea7bcfa" displayName="SAGTours_endpoint" isDeployable="true">
+        <implementation.generic type="Alias"/>
+        <property name="value for Simple alias SAGTours_endpoint" many="false" isSecure="false" displayName="value for Simple alias SAGTours_endpoint">
+            <value>http://webmethods-sampleapis-sagtours:5555</value>
+        </property>
+    </asset>
+    <asset name="PolicyAction.85258361-87c9-43a6-985d-088f9500e0d8" displayName="Policy Action [Enable HTTP / HTTPS] -&gt; Policy For API SAGTours[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+</asset_composite>

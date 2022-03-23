@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<asset_composite name="APIGatewayAssets" displayName="Assets for API Gateway" runtimeVersion="10.11" targetNamespace="http://namespaces.softwareag.com/webMethods/APIGateway" xmlns="http://namespaces.softwareag.com/acdl/1.0" xmlns:EDA="http://namespaces.softwareag.com/webMethods/EDA" xmlns:MWS="http://namespaces.softwareag.com/webMethods/MWS" xmlns:IS="http://namespaces.softwareag.com/webMethods/IS" xmlns:APIPORTAL="http://namespaces.softwareag.com/webMethods/APIPORTAL" xmlns:AgileApps="http://namespaces.softwareag.com/webMethods/AgileApps" xmlns:BROKER="http://namespaces.softwareag.com/webMethods/BROKER" xmlns:implDetails="http://namespaces.softwareag.com/acdl/implDetails" xmlns:UniversalMessaging="http://namespaces.softwareag.com/webMethods/UniversalMessaging" xmlns:TN="http://namespaces.softwareag.com/webMethods/TN" xmlns:RULES="http://namespaces.softwareag.com/webMethods/RULES" xmlns:BPM="http://namespaces.softwareag.com/webMethods/BPM" xmlns:Optimize="http://namespaces.softwareag.com/webMethods/Optimize">
+    <buildInfo name="BuildTimestamp" value="2022-03-22T16:35:37"/>
+    <asset name="API.fa40d7d9-3f6a-488f-bc4a-539c493f4826" displayName="covid[1.0]" isDeployable="true">
+        <implementation.generic type="API"/>
+        <dependsOn>APIGateway:Policy.a57444ec-4a38-43ca-94d9-df04e5ee35f8</dependsOn>
+    </asset>
+    <asset name="Policy.a57444ec-4a38-43ca-94d9-df04e5ee35f8" displayName="Policy For API covid[1.0]" isDeployable="true">
+        <implementation.generic type="Policy"/>
+        <dependsOn>APIGateway:PolicyAction.48476885-0319-4a60-85ec-5bc6acfbde4a</dependsOn>
+        <dependsOn>APIGateway:PolicyAction.c0c38698-a92b-442a-8b91-ac63b5b9a052</dependsOn>
+    </asset>
+    <asset name="PolicyAction.48476885-0319-4a60-85ec-5bc6acfbde4a" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API covid[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+        <dependsOn>APIGateway:Alias.b9f37a61-57a2-46cf-8d0e-1325629ca2d8</dependsOn>
+    </asset>
+    <asset name="Alias.b9f37a61-57a2-46cf-8d0e-1325629ca2d8" displayName="covid_endpoint" isDeployable="true">
+        <implementation.generic type="Alias"/>
+        <property name="value for Simple alias covid_endpoint" many="false" isSecure="false" displayName="value for Simple alias covid_endpoint">
+            <value>http://localhost:7071</value>
+        </property>
+    </asset>
+    <asset name="PolicyAction.c0c38698-a92b-442a-8b91-ac63b5b9a052" displayName="Policy Action [Enable HTTP / HTTPS] -&gt; Policy For API covid[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+</asset_composite>

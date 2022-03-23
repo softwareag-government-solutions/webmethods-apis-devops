@@ -1,0 +1,16 @@
+{
+  "types": [
+    "api"
+  ],
+  "includeOptions" : {
+    "includeApis" : "true",
+    "includeApplications" : "false",
+    "includeRegisteredApplications" : "false"
+  },
+  "scope": [
+    {
+      "attributeName": "id",
+      "keyword": "44e016a5-cbb0-46e6-8867-3adc7db56219"
+    }
+  ]
+}

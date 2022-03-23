@@ -1,0 +1,49 @@
+{
+  "id" : "2a480dd9-e173-4f9b-a9cc-e67336824461",
+  "names" : [ {
+    "value" : "Response Transformation",
+    "locale" : "en"
+  } ],
+  "templateKey" : "responseTransformation",
+  "parameters" : [ {
+    "templateKey" : "transformationConditions",
+    "parameters" : [ {
+      "templateKey" : "logicalConnector",
+      "values" : [ "AND" ]
+    }, {
+      "templateKey" : "transformationCondition",
+      "parameters" : [ {
+        "templateKey" : "transformationVariable",
+        "values" : [ "${operationName}" ]
+      }, {
+        "templateKey" : "transformationConditionOperator",
+        "values" : [ "equalsIgnoreCase" ]
+      }, {
+        "templateKey" : "transformationConditionValue",
+        "values" : [ "/books" ]
+      } ]
+    }, {
+      "templateKey" : "transformationCondition",
+      "parameters" : [ {
+        "templateKey" : "transformationVariable",
+        "values" : [ "${inboundHttpMethod}" ]
+      }, {
+        "templateKey" : "transformationConditionOperator",
+        "values" : [ "equalsIgnoreCase" ]
+      }, {
+        "templateKey" : "transformationConditionValue",
+        "values" : [ "get" ]
+      } ]
+    } ]
+  }, {
+    "templateKey" : "responseTransformationConfiguration",
+    "parameters" : [ {
+      "templateKey" : "payloadTransformation",
+      "parameters" : [ {
+        "templateKey" : "payload",
+        "values" : [ "${response.payload.jsonPath[[*]['id','title','price']]}" ]
+      } ]
+    } ]
+  } ],
+  "active" : false
+}

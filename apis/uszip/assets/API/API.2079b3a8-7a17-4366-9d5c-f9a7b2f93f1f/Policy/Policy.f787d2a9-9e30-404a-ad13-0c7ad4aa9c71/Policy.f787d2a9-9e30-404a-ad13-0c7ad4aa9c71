@@ -1,0 +1,31 @@
+{
+  "id" : "f787d2a9-9e30-404a-ad13-0c7ad4aa9c71",
+  "names" : [ {
+    "value" : "Default Policy for API uszip",
+    "locale" : "English"
+  } ],
+  "descriptions" : [ {
+    "value" : "",
+    "locale" : "English"
+  } ],
+  "scope" : {
+    "scopeConditions" : [ ]
+  },
+  "policyEnforcements" : [ {
+    "enforcements" : [ {
+      "enforcementObjectId" : "c607535f-c6fb-4d31-a761-adbd481203d0",
+      "order" : "0"
+    } ],
+    "stageKey" : "routing"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "cda73477-dbf0-4f4c-a069-43768cefc37f",
+      "order" : "0"
+    } ],
+    "stageKey" : "transport"
+  } ],
+  "policyScope" : "SERVICE",
+  "global" : false,
+  "systemPolicy" : false,
+  "active" : false
+}

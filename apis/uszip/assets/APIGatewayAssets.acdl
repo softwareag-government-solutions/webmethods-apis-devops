@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<asset_composite name="APIGatewayAssets" displayName="Assets for API Gateway" runtimeVersion="10.11" targetNamespace="http://namespaces.softwareag.com/webMethods/APIGateway" xmlns="http://namespaces.softwareag.com/acdl/1.0" xmlns:EDA="http://namespaces.softwareag.com/webMethods/EDA" xmlns:MWS="http://namespaces.softwareag.com/webMethods/MWS" xmlns:IS="http://namespaces.softwareag.com/webMethods/IS" xmlns:APIPORTAL="http://namespaces.softwareag.com/webMethods/APIPORTAL" xmlns:AgileApps="http://namespaces.softwareag.com/webMethods/AgileApps" xmlns:BROKER="http://namespaces.softwareag.com/webMethods/BROKER" xmlns:implDetails="http://namespaces.softwareag.com/acdl/implDetails" xmlns:UniversalMessaging="http://namespaces.softwareag.com/webMethods/UniversalMessaging" xmlns:TN="http://namespaces.softwareag.com/webMethods/TN" xmlns:RULES="http://namespaces.softwareag.com/webMethods/RULES" xmlns:BPM="http://namespaces.softwareag.com/webMethods/BPM" xmlns:Optimize="http://namespaces.softwareag.com/webMethods/Optimize">
+    <buildInfo name="BuildTimestamp" value="2022-03-23T03:42:58"/>
+    <asset name="API.2079b3a8-7a17-4366-9d5c-f9a7b2f93f1f" displayName="uszip[1.0]" isDeployable="true">
+        <implementation.generic type="API"/>
+        <dependsOn>APIGateway:Policy.f787d2a9-9e30-404a-ad13-0c7ad4aa9c71</dependsOn>
+    </asset>
+    <asset name="Policy.f787d2a9-9e30-404a-ad13-0c7ad4aa9c71" displayName="Policy For API uszip[1.0]" isDeployable="true">
+        <implementation.generic type="Policy"/>
+        <dependsOn>APIGateway:PolicyAction.c607535f-c6fb-4d31-a761-adbd481203d0</dependsOn>
+        <dependsOn>APIGateway:PolicyAction.cda73477-dbf0-4f4c-a069-43768cefc37f</dependsOn>
+    </asset>
+    <asset name="PolicyAction.c607535f-c6fb-4d31-a761-adbd481203d0" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API uszip[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+        <dependsOn>APIGateway:Alias.98a3b521-c418-4be9-a52c-b8f7b916f5ba</dependsOn>
+    </asset>
+    <asset name="Alias.98a3b521-c418-4be9-a52c-b8f7b916f5ba" displayName="uszip_endpoint" isDeployable="true">
+        <implementation.generic type="Alias"/>
+        <property name="value for Simple alias uszip_endpoint" many="false" isSecure="false" displayName="value for Simple alias uszip_endpoint">
+            <value>http://localhost:7073</value>
+        </property>
+    </asset>
+    <asset name="PolicyAction.cda73477-dbf0-4f4c-a069-43768cefc37f" displayName="Policy Action [Enable HTTP / HTTPS] -&gt; Policy For API uszip[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+</asset_composite>

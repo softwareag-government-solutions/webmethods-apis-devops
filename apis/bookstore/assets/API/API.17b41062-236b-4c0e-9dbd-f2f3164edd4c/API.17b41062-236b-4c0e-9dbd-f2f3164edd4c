@@ -1,0 +1,260 @@
+{
+  "apiDefinition" : {
+    "info" : {
+      "version" : "v0",
+      "title" : "OpenAPI definition"
+    },
+    "serviceRegistryDisplayName" : "bookstore_2.0",
+    "schemes" : [ ],
+    "security" : [ ],
+    "paths" : {
+      "/books" : {
+        "get" : {
+          "operationId" : "getAllBooks",
+          "produces" : [ "*/*" ],
+          "responses" : {
+            "200" : {
+              "description" : "default response",
+              "content" : {
+                "*/*" : {
+                  "schema" : {
+                    "type" : "gateway",
+                    "schema" : "{\"type\":\"array\",\"items\":{\"type\":\"object\",\"$ref\":\"#/components/schemas/Book\"}}"
+                  },
+                  "examples" : { }
+                }
+              },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "scopes" : [ "readonly" ],
+          "requestBody" : {
+            "content" : { },
+            "name" : "getAllBooks"
+          }
+        },
+        "post" : {
+          "operationId" : "addBook",
+          "consumes" : [ "application/json" ],
+          "responses" : {
+            "200" : {
+              "description" : "default response",
+              "content" : { },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "scopes" : [ "write" ],
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Book"
+                },
+                "examples" : { }
+              }
+            },
+            "name" : "addBook"
+          }
+        },
+        "scopes" : [ ],
+        "displayName" : "/books",
+        "enabled" : true
+      },
+      "/books/{id}" : {
+        "get" : {
+          "operationId" : "getBook",
+          "produces" : [ "*/*" ],
+          "parameters" : [ {
+            "in" : "path",
+            "parameterSchema" : {
+              "type" : "string"
+            },
+            "name" : "id",
+            "type" : "string",
+            "required" : true
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "default response",
+              "content" : {
+                "*/*" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/Book"
+                  },
+                  "examples" : { }
+                }
+              },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "scopes" : [ "readonly" ],
+          "requestBody" : {
+            "content" : { },
+            "name" : "getBook"
+          }
+        },
+        "put" : {
+          "operationId" : "updateBook",
+          "consumes" : [ "application/json" ],
+          "parameters" : [ {
+            "in" : "path",
+            "parameterSchema" : {
+              "type" : "string"
+            },
+            "name" : "id",
+            "type" : "string",
+            "required" : true
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "default response",
+              "content" : { },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "scopes" : [ "write" ],
+          "requestBody" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Book"
+                },
+                "examples" : { }
+              }
+            },
+            "name" : "updateBook"
+          }
+        },
+        "delete" : {
+          "operationId" : "deleteBook",
+          "parameters" : [ {
+            "in" : "path",
+            "parameterSchema" : {
+              "type" : "string"
+            },
+            "name" : "id",
+            "type" : "string",
+            "required" : true
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "default response",
+              "content" : { },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "scopes" : [ "delete" ],
+          "requestBody" : {
+            "content" : { },
+            "name" : "deleteBook"
+          }
+        },
+        "scopes" : [ ],
+        "displayName" : "/books/{id}",
+        "enabled" : true
+      }
+    },
+    "securityDefinitions" : { },
+    "definitions" : { },
+    "parameters" : { },
+    "baseUriParameters" : [ ],
+    "externalDocs" : [ ],
+    "servers" : [ {
+      "url" : "${bookstore_endpoint}/bookstore",
+      "description" : "Generated server url",
+      "variables" : { }
+    } ],
+    "components" : {
+      "schemas" : {
+        "Book" : {
+          "type" : "gateway",
+          "schema" : "{\"type\":\"object\",\"properties\":{\"author\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"format\":\"int64\"},\"isbn\":{\"type\":\"string\"},\"language\":{\"type\":\"string\"},\"numOfPages\":{\"type\":\"integer\",\"format\":\"int32\"},\"price\":{\"type\":\"number\",\"format\":\"double\"},\"publishDate\":{\"type\":\"string\",\"format\":\"date-time\"},\"publisher\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}}}"
+        }
+      },
+      "responses" : { },
+      "parameters" : { },
+      "examples" : { },
+      "requestBodies" : { },
+      "headers" : { },
+      "links" : { },
+      "callbacks" : { }
+    },
+    "type" : "rest"
+  },
+  "nativeEndpoint" : [ {
+    "passSecurityHeaders" : true,
+    "uri" : "${bookstore_endpoint}/bookstore",
+    "connectionTimeoutDuration" : 0,
+    "alias" : false
+  } ],
+  "apiName" : "bookstore",
+  "apiVersion" : "2.0",
+  "apiDescription" : "bookstore apis",
+  "maturityState" : "Production",
+  "isActive" : true,
+  "type" : "REST",
+  "owner" : "Administrator",
+  "policies" : [ "491e0fd8-cd3f-48f9-999e-df4a724384c8" ],
+  "referencedFiles" : {
+    "bookstore" : "{\"openapi\":\"3.0.1\",\"info\":{\"title\":\"OpenAPI definition\",\"version\":\"v0\"},\"servers\":[{\"url\":\"http://intserver1.irsrepro.clouddemo.saggov.local:7072/bookdemo\",\"description\":\"Generated server url\"}],\"paths\":{\"/books/{id}\":{\"get\":{\"operationId\":\"getBook\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"description\":\"default response\",\"content\":{\"*/*\":{\"schema\":{\"$ref\":\"#/components/schemas/Book\"}}}}}},\"put\":{\"operationId\":\"updateBook\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/Book\"}}}},\"responses\":{\"200\":{\"description\":\"default response\"}}},\"delete\":{\"operationId\":\"deleteBook\",\"parameters\":[{\"name\":\"id\",\"in\":\"path\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"responses\":{\"200\":{\"description\":\"default response\"}}}},\"/books\":{\"get\":{\"operationId\":\"getAllBooks\",\"responses\":{\"200\":{\"description\":\"default response\",\"content\":{\"*/*\":{\"schema\":{\"type\":\"array\",\"items\":{\"$ref\":\"#/components/schemas/Book\"}}}}}}},\"post\":{\"operationId\":\"addBook\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"$ref\":\"#/components/schemas/Book\"}}}},\"responses\":{\"200\":{\"description\":\"default response\"}}}}},\"components\":{\"schemas\":{\"Book\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"format\":\"int64\"},\"title\":{\"type\":\"string\"},\"publishDate\":{\"type\":\"string\",\"format\":\"date-time\"},\"author\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"price\":{\"type\":\"number\",\"format\":\"double\"},\"numOfPages\":{\"type\":\"integer\",\"format\":\"int32\"},\"publisher\":{\"type\":\"string\"},\"language\":{\"type\":\"string\"},\"isbn\":{\"type\":\"string\"}}}}}}\n"
+  },
+  "tracingEnabled" : false,
+  "scopes" : [ {
+    "name" : "readonly",
+    "description" : "read-only operations",
+    "oAuth2ScopeName" : "25ea56e7-5370-4f1a-a91b-0269bf08bebf",
+    "policies" : [ "4eae713f-92ae-494b-818a-b5699f905a94" ],
+    "mashedUpAPI" : false
+  }, {
+    "name" : "write",
+    "description" : "write operations",
+    "oAuth2ScopeName" : "d5ab3bd4-5414-4f66-b760-917ff413e0ca",
+    "policies" : [ "5334f0ae-2b23-4be9-a032-8fa75d982374" ],
+    "mashedUpAPI" : false
+  }, {
+    "name" : "delete",
+    "description" : "delete operations",
+    "oAuth2ScopeName" : "80885eee-9abe-4994-bae4-7307df3bc02e",
+    "policies" : [ "482d21f7-9219-4f8d-8db1-e22dff8d539b" ],
+    "mashedUpAPI" : false
+  } ],
+  "publishedPortals" : [ ],
+  "creationDate" : "2022-03-08 14:12:53 GMT",
+  "lastModified" : "2022-03-08 15:44:56 GMT",
+  "prevVersion" : "538cc9db-d23d-46be-a8ac-3086faff8031",
+  "nextVersion" : "14281375-7ec5-4204-a586-fdca65a18f64",
+  "systemVersion" : 2,
+  "gatewayEndpoints" : { },
+  "deployments" : [ "APIGateway" ],
+  "id" : "17b41062-236b-4c0e-9dbd-f2f3164edd4c"
+}

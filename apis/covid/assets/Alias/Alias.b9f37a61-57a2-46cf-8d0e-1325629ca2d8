@@ -1,0 +1,8 @@
+{
+  "id" : "b9f37a61-57a2-46cf-8d0e-1325629ca2d8",
+  "name" : "covid_endpoint",
+  "description" : "covid endpoint alias",
+  "type" : "simple",
+  "owner" : "Administrator",
+  "value" : "http://localhost:7071"
+}

@@ -1,0 +1,9 @@
+testresults/
+staging/
+
+.DS_Store
+.swp
+build/
+nohup.out
+*.code-workspace
+*.log

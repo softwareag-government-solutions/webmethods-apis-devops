@@ -1,0 +1,8 @@
+{
+  "id" : "c0e43c19-2298-4634-bbd7-0c32eea7bcfa",
+  "name" : "SAGTours_endpoint",
+  "description" : "SAGTours API endpoint alias",
+  "type" : "simple",
+  "owner" : "Administrator",
+  "value" : "http://webmethods-sampleapis-sagtours:5555"
+}

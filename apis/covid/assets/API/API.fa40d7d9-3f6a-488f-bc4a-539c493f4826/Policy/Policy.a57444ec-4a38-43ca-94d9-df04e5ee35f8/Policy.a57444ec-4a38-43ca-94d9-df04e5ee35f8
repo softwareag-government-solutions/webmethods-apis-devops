@@ -1,0 +1,31 @@
+{
+  "id" : "a57444ec-4a38-43ca-94d9-df04e5ee35f8",
+  "names" : [ {
+    "value" : "Default Policy for API covid",
+    "locale" : "English"
+  } ],
+  "descriptions" : [ {
+    "value" : "",
+    "locale" : "English"
+  } ],
+  "scope" : {
+    "scopeConditions" : [ ]
+  },
+  "policyEnforcements" : [ {
+    "enforcements" : [ {
+      "enforcementObjectId" : "48476885-0319-4a60-85ec-5bc6acfbde4a",
+      "order" : "0"
+    } ],
+    "stageKey" : "routing"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "c0c38698-a92b-442a-8b91-ac63b5b9a052",
+      "order" : "0"
+    } ],
+    "stageKey" : "transport"
+  } ],
+  "policyScope" : "SERVICE",
+  "global" : false,
+  "active" : false,
+  "systemPolicy" : false
+}

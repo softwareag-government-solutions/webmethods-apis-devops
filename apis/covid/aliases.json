@@ -1,0 +1,33 @@
+{
+  "covid_endpoint": {
+    "id" : "b9f37a61-57a2-46cf-8d0e-1325629ca2d8",
+    "dev": {
+      "name" : "covid_endpoint",
+      "description" : "covid endpoint alias",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://localhost:7071"
+    },
+    "qalb": {
+      "name" : "covid_endpoint",
+      "description" : "covid endpoint alias for QA env",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://internal-repro1011-reproalb-1378200756.us-east-1.elb.amazonaws.com"
+    },
+    "qa1": {
+      "name" : "covid_endpoint",
+      "description" : "covid endpoint alias for QA env - apiserver1",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://172.28.4.251:7071"
+    },
+    "qa2": {
+      "name" : "covid_endpoint",
+      "description" : "covid endpoint alias for QA env - apiserver2",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://172.28.5.141:7071"
+    }
+  }
+}
