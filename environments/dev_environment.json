@@ -5,7 +5,7 @@
 	{
       "enabled": true,
       "key": "baseUrl",
-      "value": "http://172.28.4.101:5555",
+      "value": "${apigateway_dev_proto}://${apigateway_dev_host}:${apigateway_dev_port}",
       "type": "text"
     }
   ],
