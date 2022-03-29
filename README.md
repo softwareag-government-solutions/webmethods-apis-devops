@@ -48,29 +48,9 @@ echo -n "QA ENV Administrator password: "; read -s password; export APIGW_QA_DEP
 ./gateway_import_export_utils.sh --export --api_name sagtours --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 ```
 
-## CI
+## CI/CD directly from Git code (without staging)
 
-Build a package for an api with the build number
-ie. bookstore-<version>.zip
-And push it to an artifact repo...
-
-NOTE: this should not be the Assets only...should be the full api project including the tests and the aliases etc... 
-Because we'll need these artifacts in the CD portion.
-
-## Deploy 
-
-These should usually be automated using a build pipeline tool like Jenkins...
-
-## deploy environment-staged apis
-
-Get the api package deployed on artifact repo and perform the following:
-- extracting, 
-- modifying alias 
-- package assets
-- deploy
-- perform extra api calls (ie. publish to portal)
-- run tests
-
+### deploy
 
 ```bash
 source common.sh; deploy_staged_api "bookstore" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
@@ -86,3 +66,30 @@ source common.sh; run_test_suite "bookstore" "all" "qa_environment.json"
 source common.sh; run_test_suite "covid" "all" "qa_environment.json"
 source common.sh; run_test_suite "uszip" "all" "qa_environment.json"
 ```
+
+## CI/CD with artifact staging
+
+These should usually be automated using a build pipeline tool like Jenkins...
+
+### CI + staging
+
+TODO/TO_REFINE...
+
+Build a package for an api with the build number
+ie. bookstore-123.zip
+And push it to an artifact repo (ie. nexus)
+
+NOTE: this should not be the APIGateway Assets only...should be the full "api project" including the tests and the aliases etc... 
+Because we'll need these artifacts in the CD portion.
+
+### Deploy to target environment
+
+TODO/TO_REFINE...
+
+Get the api package deployed on artifact repo and perform the following:
+- extracting, 
+- modifying alias 
+- package assets
+- deploy
+- perform extra api calls (ie. publish to portal)
+- run tests
