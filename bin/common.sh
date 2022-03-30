@@ -243,8 +243,7 @@ deploy_api_build() {
 	
 	BIN_DIR="$THISDIR"
 	API_DEPLOY_STAGE_DIR=$(staging_builds_dir $api_project $build_version)
-	STAGING_PREPS_DIR=$(staging_preps_dir $api_project $environment)
-	API_ASSETS_DIR="$STAGING_PREPS_DIR/assets"
+	API_ASSETS_DIR="$API_DEPLOY_STAGE_DIR/assets"
 
 	## first let's get the api build from the repo
 	if [ ! -d "$repo_dir" ]; then
