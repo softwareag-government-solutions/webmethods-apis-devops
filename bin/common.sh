@@ -71,6 +71,7 @@ import_api() {
 		rm $BASEDIR/$api_project.zip
 	else
 		echo "The API assets with name $api do not exist as a flat file."
+		exit 10;
 	fi
 	cd $BIN_DIR
 }
@@ -103,6 +104,7 @@ deploy_staged_api() {
 		rm $BASEDIR/$api_project.zip
 	else
 		echo "The staged API assets for $API_ASSETS_DIR do not exist..."
+		exit 10;
 	fi
 	cd $BIN_DIR
 }
@@ -176,6 +178,7 @@ stage_api() {
 		fi
 	else
 		echo "The API project dir $api_project_dir does not exists"
+		exit 10;
 	fi
 }
 
@@ -207,6 +210,7 @@ package_api_build() {
 		rm $BASEDIR/$api_project-$build_version.zip
 	else
 		echo "The API assets with name $api do not exist as a flat file."
+		exit 10;
 	fi
 	cd $BIN_DIR
 }
@@ -270,6 +274,7 @@ deploy_api_build() {
 		rm $BASEDIR/$api_project.zip
 	else
 		echo "The staged API assets for $API_ASSETS_DIR do not exist..."
+		exit 10;
 	fi
 	cd $BIN_DIR
 }
@@ -293,6 +298,7 @@ import_configurations() {
 		rm config.zip
 	else
 		echo "The Configuration with name $configuration_name does not exists as a flat file."
+		exit 10;
 	fi
 	cd $BIN_DIR
 }
@@ -318,6 +324,7 @@ export_api() {
 		rm $BASEDIR/$api_project.zip
 	else
 		echo "The API with name $api does not exists in the flat file."
+		exit 10;
 	fi
 }
 ##############################################################################
@@ -338,7 +345,8 @@ export_configurations() {
 	unzip -o config.zip -d $CONF_DIR/
 	rm config.zip
 	else
-	echo "The Configuration with name $configuration_name does not exists in the flat file."
+		echo "The Configuration with name $configuration_name does not exists in the flat file."
+		exit 10;
 	fi
 }
 
@@ -365,14 +373,11 @@ run_test() {
 	done
  fi
 
- ENVFILE_DIR=$BASEDIR/environments
- ENVFILE=$ENVFILE_DIR/$environment_file
-
  echo "Running postman tests with environments:"
  echo "- Environment File: $ENVFILE"
  echo "- Environment vars: $newman_environment"
  
- newman run $test_collection  --reporters cli,junit,html --reporter-junit-export $result_folder/$RANDOM.xml -e $ENVFILE $newman_environment --reporter-html-export $result_folder/index.html
+ newman run $test_collection --reporters cli,junit,html --reporter-junit-export $result_folder/$RANDOM.xml -e $environment_file $newman_environment --reporter-html-export $result_folder/index.html
 }
 
 ############################################################################################################################################################
@@ -383,12 +388,14 @@ run_test() {
 ############################################################################################################################################################
 
 run_test_suite() {
-	api_project=$1
+	api_project_dir=$1
     test_suite=$2
-	environment_file_location=$3
+	environment=$3
 
-	API_DIR=$BASEDIR/apis/$api_project
- 	RESULT_FOLDER=$BASEDIR/testresults/$api_project
+	ENVFILE_DIR=$BASEDIR/environments
+	ENVFILE=$ENVFILE_DIR/${environment}_environment.json
+
+ 	RESULT_FOLDER=$BASEDIR/testresults/$(basename $api_project_dir)
 
 	if [ -d "$RESULT_FOLDER" ] 
 	then
@@ -396,20 +403,26 @@ run_test_suite() {
 	fi
 	mkdir $RESULT_FOLDER
  
-	if [ -d "$API_DIR" ]; then
-		echo "Running tests for API project $api_project"
-		if [ -d "$API_DIR/tests" ]; then
+	if [ -d "$api_project_dir" ]; then
+		echo "Running tests for API project $api_project_dir"
+		if [ -d "$api_project_dir/tests" ]; then
 			if [ "$test_suite" = "all" ]; then 
-				echo "Running ALL tests in $API_DIR/tests"
-				for file in $API_DIR/tests/*; do
-					run_test $file $environment_file_location "$RESULT_FOLDER"
+				echo "Running ALL tests in $api_project_dir/tests"
+				for file in $api_project_dir/tests/*; do
+					run_test $file $ENVFILE "$RESULT_FOLDER"
 				done
 			else
-				run_test $API_DIR/tests/$test_suite $environment_file_location "$RESULT_FOLDER"
+				if [ -f "$api_project_dir/tests/$test_suite" ]; then
+					run_test $api_project_dir/tests/$test_suite $ENVFILE "$RESULT_FOLDER"
+				else
+					echo "The API test suite with name $api_project_dir/tests/$test_suite does not exists"
+					exit 10;
+				fi
 			fi
 		fi
 	else
-		echo "The API project with name $api_project does not exists"
+		echo "The API project with name $api_project_dir does not exists"
+		exit 10;
 	fi
 }
 

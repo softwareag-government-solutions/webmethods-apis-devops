@@ -48,7 +48,7 @@ echo -n "QA ENV Administrator password: "; read -s password; export APIGW_QA_DEP
 ./gateway_import_export_utils.sh --export --api_name sagtours --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 ```
 
-## CI/CD directly from Git code (without staging)
+## CD only, directly from Git code (without storing in artifact repo)
 
 ### deploy
 
@@ -59,24 +59,19 @@ source common.sh; deploy_staged_api "uszip" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPL
 source common.sh; deploy_staged_api "sagtours" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
 ```
 
-### run tests
-
-```bash
-source common.sh; run_test_suite "bookstore" "all" "qa_environment.json"
-source common.sh; run_test_suite "covid" "all" "qa_environment.json"
-source common.sh; run_test_suite "uszip" "all" "qa_environment.json"
-```
-
-## CI/CD with artifact staging
+## CI/CD (with storing in artifact repo)
 
 These should usually be automated using a build pipeline tool like Jenkins...
 
-### CI + staging
+### CI + storing in artifact repo
 
 Build a package for an api project with the build number, and push it to a central artifact repo location (here a local folder, but could be nexus or other)
 
 ```bash
 source common.sh; package_api_build "bookstore" "1.0.1" "$HOME/apigatewaycirepo"
+source common.sh; package_api_build "covid" "1.0.1" "$HOME/apigatewaycirepo"
+source common.sh; package_api_build "uszip" "1.0.1" "$HOME/apigatewaycirepo"
+source common.sh; package_api_build "sagtours" "1.0.1" "$HOME/apigatewaycirepo"
 ```
 
 ### Deploy to target environment
@@ -91,4 +86,15 @@ Get the api package deployed on artifact repo and perform the following:
 
 ```bash
 source common.sh; deploy_api_build "bookstore" "1.0.1" "$HOME/apigatewaycirepo" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
+source common.sh; deploy_api_build "covid" "1.0.1" "$HOME/apigatewaycirepo" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
+source common.sh; deploy_api_build "uszip" "1.0.1" "$HOME/apigatewaycirepo" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
+source common.sh; deploy_api_build "sagtours" "1.0.1" "$HOME/apigatewaycirepo" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
+```
+
+## run tests
+
+```bash
+source common.sh; run_test_suite "bookstore" "all" "qa"
+source common.sh; run_test_suite "covid" "all" "qa"
+source common.sh; run_test_suite "uszip" "all" "qa"
 ```
