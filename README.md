@@ -73,18 +73,13 @@ These should usually be automated using a build pipeline tool like Jenkins...
 
 ### CI + staging
 
-TODO/TO_REFINE...
+Build a package for an api project with the build number, and push it to a central artifact repo location (here a local folder, but could be nexus or other)
 
-Build a package for an api with the build number
-ie. bookstore-123.zip
-And push it to an artifact repo (ie. nexus)
-
-NOTE: this should not be the APIGateway Assets only...should be the full "api project" including the tests and the aliases etc... 
-Because we'll need these artifacts in the CD portion.
+```bash
+source common.sh; package_api_build "bookstore" "1.0.1" "$HOME/apigatewaycirepo"
+```
 
 ### Deploy to target environment
-
-TODO/TO_REFINE...
 
 Get the api package deployed on artifact repo and perform the following:
 - extracting, 
@@ -93,3 +88,7 @@ Get the api package deployed on artifact repo and perform the following:
 - deploy
 - perform extra api calls (ie. publish to portal)
 - run tests
+
+```bash
+source common.sh; deploy_api_build "bookstore" "1.0.1" "$HOME/apigatewaycirepo" "qa" "$APIGW_QA_URL" "$APIGW_QA_DEPLOY_USER" "$APIGW_QA_DEPLOY_PASSWORD"
+```

@@ -22,7 +22,7 @@
       "owner" : "Administrator",
       "value" : "http://172.28.5.141:7072"
     },
-    "qalb": {
+    "qa": {
       "name" : "bookstore_endpoint",
       "description" : "bookstore endpoint alias for QA env - api LB",
       "type" : "simple",
