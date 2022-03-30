@@ -5,7 +5,7 @@
 	{
       "enabled": true,
       "key": "baseUrl",
-      "value": "${apigateway_qa_proto}://${apigateway_qa_host}:${apigateway_qa_port}",
+      "value": "{{apigateway_baseurl_qa}}",
       "type": "text"
     }
   ],

@@ -78,9 +78,9 @@ import_api() {
 
 ##############################################################################
 ## Import an API to the API Gateway Server.
-## Usage: deploy_staged_api <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
+## Usage: deploy_api_fromlocal <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
 ##############################################################################
-deploy_staged_api() {
+deploy_api_fromlocal() {
 	api_project="$1"
 	environment="$2"
 	url="$3"
@@ -184,7 +184,7 @@ stage_api() {
 
 ##############################################################################
 ## Import an API to the API Gateway Server.
-## Usage: deploy_staged_api <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
+## Usage: deploy_api_fromlocal <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
 ##############################################################################
 package_api_build() {
 	api_project="$1"
@@ -369,7 +369,7 @@ run_test() {
 	echo $env_vars_array
 	for i in "${env_vars_array[@]}"  
 	do  
-		newman_environment="$newman_environment --env-var \"$i\" "
+		newman_environment="$newman_environment --env-var $i"
 	done
  fi
 
@@ -386,16 +386,25 @@ run_test() {
 ## When 'all' is passed all tests under tests/test-suites are run
 ## Usage run_test_suite <test_suite> <environment_file_location> <api_gateway_server> <test_result_folder>
 ############################################################################################################################################################
-
 run_test_suite() {
-	api_project_dir=$1
-    test_suite=$2
-	environment=$3
+	## api build details
+	api_project="$1"
+	build_version="$2"
+    test_suite="$3"
+	environment="$4"
+	env_vars="$5"
 
 	ENVFILE_DIR=$BASEDIR/environments
 	ENVFILE=$ENVFILE_DIR/${environment}_environment.json
 
- 	RESULT_FOLDER=$BASEDIR/testresults/$(basename $api_project_dir)
+	API_DIR=
+	if [ "$build_version" != "local" ]; then
+		API_DIR=$BASEDIR/apis/$api_project
+	else
+		API_DIR=$(staging_builds_dir $api_project $build_version)
+	fi
+
+ 	RESULT_FOLDER=$BASEDIR/testresults/$(basename $API_DIR)
 
 	if [ -d "$RESULT_FOLDER" ] 
 	then
@@ -403,25 +412,25 @@ run_test_suite() {
 	fi
 	mkdir $RESULT_FOLDER
  
-	if [ -d "$api_project_dir" ]; then
-		echo "Running tests for API project $api_project_dir"
-		if [ -d "$api_project_dir/tests" ]; then
+	if [ -d "$API_DIR" ]; then
+		echo "Running tests for API project $API_DIR"
+		if [ -d "$API_DIR/tests" ]; then
 			if [ "$test_suite" = "all" ]; then 
-				echo "Running ALL tests in $api_project_dir/tests"
-				for file in $api_project_dir/tests/*; do
-					run_test $file $ENVFILE "$RESULT_FOLDER"
+				echo "Running ALL tests in $API_DIR/tests"
+				for file in $API_DIR/tests/*; do
+					run_test $file $ENVFILE "$RESULT_FOLDER" "$env_vars"
 				done
 			else
-				if [ -f "$api_project_dir/tests/$test_suite" ]; then
-					run_test $api_project_dir/tests/$test_suite $ENVFILE "$RESULT_FOLDER"
+				if [ -f "$API_DIR/tests/$test_suite" ]; then
+					run_test $API_DIR/tests/$test_suite $ENVFILE "$RESULT_FOLDER" "$env_vars"
 				else
-					echo "The API test suite with name $api_project_dir/tests/$test_suite does not exists"
+					echo "The API test suite with name $API_DIR/tests/$test_suite does not exists"
 					exit 10;
 				fi
 			fi
 		fi
 	else
-		echo "The API project with name $api_project_dir does not exists"
+		echo "The API project with name $API_DIR does not exists"
 		exit 10;
 	fi
 }
