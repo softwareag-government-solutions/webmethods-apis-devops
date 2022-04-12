@@ -24,7 +24,9 @@ echo -n "QA ENV Administrator password: "; read -s password; export APIGW_QA_DEP
 
 ## Development (usually on your local or a dev server)
 
-### Raw import the apis from git, as-is (no staging)
+### Import the APIs from git into development APIGateway (no staging)
+
+This is usually something you do at the begining of your work to make sure you work on the latest version of the API based on what's in GIT (especially to accound for other people having possibly added new policies etc...)
 
 ```bash
 ./gateway_import_export_utils.sh --import --api_name bookstore --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
@@ -36,7 +38,9 @@ echo -n "QA ENV Administrator password: "; read -s password; export APIGW_QA_DEP
 ./gateway_import_export_utils.sh --import --api_name sagtours --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 ```
 
-### export the apis to save in git once work is done
+### Save the APIs in git once work is done on the development APIGateway
+
+This is an incremental operation, as work gets done... and especially at the end of the work to make sure everything gets saved in GIT.
 
 ```bash
 ./gateway_import_export_utils.sh --export --api_name bookstore --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
@@ -48,7 +52,7 @@ echo -n "QA ENV Administrator password: "; read -s password; export APIGW_QA_DEP
 ./gateway_import_export_utils.sh --export --api_name sagtours --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 ```
 
-## Option 1 - CD only, directly from Git code (without storing in artifact repo)
+## Deployment - Option 1 - CD only, directly from Git code (without storing in artifact repo)
 
 In this option, we don't store a "build" in an artifact repo...we simply push the artifact in git into the target env...
 ### deploy
@@ -60,9 +64,9 @@ sh gateway_deploy_fromlocal.sh --api_project "uszip" --environment "qa" --apigat
 sh gateway_deploy_fromlocal.sh --api_project "sagtours" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
 ```
 
-##  Option 2 - CI/CD (with storing in artifact repo)
+## Deployment - Option 2 - CI/CD (with storing in artifact repo)
 
-In this option, we store a "build" in an artifact repo...
+In this option, we first store a "build" in an artifact repo...
 And then, in a deploy stage, we push the build artifact to the target env...
 
 ### CI + storing in artifact repo
@@ -96,7 +100,7 @@ sh gateway_deploy_build.sh --api_project "uszip" --build_version "1.0.1" --repod
 sh gateway_deploy_build.sh --api_project "sagtours" --build_version "1.0.1" --repodir "$HOME/apigatewaycirepo" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
 ```
 
-## run tests
+## Run API Tests
 
 ```bash
 sh gateway_test_build.sh --api_project "bookstore" --build_version "1.0.1" --environment "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
