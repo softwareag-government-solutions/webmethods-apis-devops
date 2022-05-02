@@ -5,7 +5,8 @@
 ## variables
 api_project=
 build_version=
-repodir=
+repodir=$BASEDIR/staged
+createrepodir=true
 
 #Usage of this script
 usage(){
@@ -30,11 +31,15 @@ parseArgs(){
       --build_version)
         build_version=${1}
         shift
-      ;;      
+      ;;
       --repodir)
         repodir=${1}
         shift
-	    ;;	
+	    ;;
+      --createrepodir)
+        createrepodir=${1}
+        shift
+	    ;;
       -h|--help)
         usage
       ;;
@@ -69,7 +74,13 @@ main(){
   usage
   fi
 
-  package_api_build $api_project $build_version $repodir
+  if [ -z "$createrepodir" ] 
+  then 
+    echo "createrepodir is missing" 
+  usage
+  fi
+
+  stage_apiproject $api_project $build_version $repodir $createrepodir
 }
 
 #Call the main function with all arguments passed in...

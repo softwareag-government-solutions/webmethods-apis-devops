@@ -186,14 +186,24 @@ stage_api() {
 ## Import an API to the API Gateway Server.
 ## Usage: deploy_api <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
 ##############################################################################
-package_api_build() {
+stage_apiproject() {
 	api_project="$1"
 	build_version="$2"
 	#mock, here it should be a repo url like nexus etc...
 	target_repo_dir="$3"
+	create_repo_dir="$4"
 
 	BIN_DIR="$THISDIR"
 	API_DIR=$BASEDIR/apis/$api_project
+	
+	if [ "x$target_repo_dir" == "x" ]; then
+		echo "ERROR: $target_repo_dir i snot specified...exit"
+		exit 10;
+	fi
+
+	if [ "$create_repo_dir" == "true" ]; then
+		mkdir -p $target_repo_dir
+	fi
 
 	if [ ! -d "$target_repo_dir" ]; then
 		echo "ERROR: $target_repo_dir does not exist...exit"
