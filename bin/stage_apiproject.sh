@@ -14,7 +14,7 @@ usage(){
   echo "args:"
   echo "--api_project		     *The API project to import"
   echo "--build_version      the revision for the build"
-  echo "--repodir            The repo directory to put the new build"
+  echo "--repodir            The repo directory to put the new build (default to $BASEDIR/staged)"
   exit
 }
 

@@ -5,8 +5,8 @@
 ## variables
 api_project=
 build_version=
-repodir=
-environment=
+repodir=$BASEDIR/staged
+stagename=
 apigwurl=
 apigwusername=
 apigwpassword=
@@ -17,8 +17,8 @@ usage(){
   echo "args:"
   echo "--api_project		      *The API project to import"
   echo "--build_version       the revision for the build"
-  echo "--repodir             The repo directory where to fetch the build from"
-  echo "--environment         The environment level"
+  echo "--repodir             The repo directory where to fetch the build from (default to $BASEDIR/staged)"
+  echo "--stagename           The target stage name"
   echo "--apigateway_url      APIGateway url to import or export from.Default is http://localhost:5555"
   echo "--username            The APIGateway username."
   echo "--password            The APIGateway password."
@@ -43,8 +43,8 @@ parseArgs(){
         repodir=${1}
         shift
 	    ;;      
-      --environment)
-        environment=${1}
+      --stagename)
+        stagename=${1}
         shift
 	    ;;
       --apigateway_url)
@@ -93,9 +93,9 @@ main(){
   usage
   fi
 
-  if [ -z "$environment" ] 
+  if [ -z "$stagename" ] 
   then 
-    echo "environment is missing" 
+    echo "stagename is missing" 
   usage
   fi
 
@@ -117,7 +117,7 @@ main(){
   usage
   fi
 
-  deploy_staged_api "$api_project" "$build_version" "$repodir" "$environment" "$apigwurl" "$apigwusername" "$apigwpassword"
+  deploy_staged_api "$api_project" "$build_version" "$repodir" "$stagename" "$apigwurl" "$apigwusername" "$apigwpassword"
 }
 
 #Call the main function with all arguments passed in...
