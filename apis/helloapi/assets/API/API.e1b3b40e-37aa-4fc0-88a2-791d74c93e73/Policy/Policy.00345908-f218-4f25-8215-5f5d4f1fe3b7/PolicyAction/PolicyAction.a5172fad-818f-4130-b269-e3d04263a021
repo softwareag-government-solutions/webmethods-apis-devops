@@ -1,0 +1,25 @@
+{
+  "id" : "a5172fad-818f-4130-b269-e3d04263a021",
+  "names" : [ {
+    "value" : "Straight Through Routing",
+    "locale" : "en"
+  } ],
+  "templateKey" : "straightThroughRouting",
+  "parameters" : [ {
+    "templateKey" : "endpointUri",
+    "values" : [ "https://172.28.4.26:5543/ws/com.explorer.wm.contract.first.ws:HelloContractFirstWS/WmExplorerGreetingSOAP" ]
+  }, {
+    "templateKey" : "soapOptimize",
+    "values" : [ "None" ]
+  }, {
+    "templateKey" : "passSecurityHeaders",
+    "values" : [ "true" ]
+  }, {
+    "templateKey" : "connectTimeout",
+    "values" : [ "5" ]
+  }, {
+    "templateKey" : "readTimeout",
+    "values" : [ "5" ]
+  } ],
+  "active" : false
+}

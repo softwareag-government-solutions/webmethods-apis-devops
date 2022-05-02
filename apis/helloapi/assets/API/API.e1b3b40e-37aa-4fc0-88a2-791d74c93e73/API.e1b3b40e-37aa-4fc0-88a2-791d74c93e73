@@ -1,0 +1,137 @@
+{
+  "apiDefinition" : {
+    "wsdl" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<wsdl:definitions name=\"WmExplorerGreeting\" targetNamespace=\"http://www.wm-explorer.com/ContractFirst/Greeting\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:hdr=\"http://www.wm-explorer.com/ContractFirst/Header\" xmlns:tns=\"http://www.wm-explorer.com/ContractFirst/Greeting\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\">\n  <wsdl:types>\n    <xsd:schema xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xsd:import namespace=\"http://www.wm-explorer.com/ContractFirst/Header\" schemaLocation=\"WmExplorerHeader.xsd\"></xsd:import>\n    </xsd:schema>\n    <xsd:schema xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xsd:import namespace=\"http://www.wm-explorer.com/ContractFirst/Greeting\" schemaLocation=\"Hello.xsd\"></xsd:import>\n    </xsd:schema>\n  </wsdl:types>\n  <wsdl:message name=\"sayHelloRequest\">\n    <wsdl:part name=\"parametersSayHelloIn\" element=\"tns:sayHelloRequest\"></wsdl:part>\n  </wsdl:message>\n  <wsdl:message name=\"ResponseHeader\">\n    <wsdl:part name=\"parametersRespHeader\" element=\"hdr:ContractFirstResponseHeader\"></wsdl:part>\n  </wsdl:message>\n  <wsdl:message name=\"sayHelloResponse\">\n    <wsdl:part name=\"parametersSayHelloOut\" element=\"tns:sayHelloResponse\"></wsdl:part>\n  </wsdl:message>\n  <wsdl:message name=\"RequestHeader\">\n    <wsdl:part name=\"parametersReqHeader\" element=\"hdr:ContractFirstRequestHeader\"></wsdl:part>\n  </wsdl:message>\n  <wsdl:portType name=\"WmExplorerGreeting\">\n    <wsdl:operation name=\"sayHello\">\n      <wsdl:input message=\"tns:sayHelloRequest\"></wsdl:input>\n      <wsdl:output message=\"tns:sayHelloResponse\"></wsdl:output>\n    </wsdl:operation>\n  </wsdl:portType>\n  <wsdl:binding name=\"WmExplorerGreeting\" type=\"tns:WmExplorerGreeting\">\n    <soap:binding style=\"document\" transport=\"http://schemas.xmlsoap.org/soap/http\" />\n    <wsdl:operation name=\"sayHello\">\n      <soap:operation soapAction=\"http://www.wm-explorer.com/ContractFirst/Greeting/sayHello\" />\n      <wsdl:input>\n        <soap:body use=\"literal\" />\n        <soap:header message=\"tns:RequestHeader\" part=\"parametersReqHeader\" use=\"literal\"></soap:header>\n      </wsdl:input>\n      <wsdl:output>\n        <soap:body use=\"literal\" />\n        <soap:header message=\"tns:ResponseHeader\" part=\"parametersRespHeader\" use=\"literal\"></soap:header>\n      </wsdl:output>\n    </wsdl:operation>\n  </wsdl:binding>\n  <wsdl:service name=\"com.explorer.wm.contract.first.ws.HelloContractFirstWS\">\n    <wsdl:port name=\"WmExplorerGreetingSOAP\" binding=\"tns:WmExplorerGreeting\">\n      <soap:address location=\"http://ip-172-30-2-27:5555/ws/com.explorer.wm.contract.first.ws:HelloContractFirstWS/WmExplorerGreetingSOAP\" />\n    </wsdl:port>\n  </wsdl:service>\n  <wsp:Policy Name=\"Username Over Transport\" wsu:Id=\"Username_Over_Transport\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n    <wsp:ExactlyOne>\n      <wsp:All>\n        <sp:TransportBinding xmlns:sp=\"http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702\">\n          <wsp:Policy>\n            <sp:TransportToken>\n              <wsp:Policy>\n                <sp:HttpsToken />\n              </wsp:Policy>\n            </sp:TransportToken>\n            <sp:AlgorithmSuite>\n              <wsp:Policy>\n                <sp:Basic256 />\n              </wsp:Policy>\n            </sp:AlgorithmSuite>\n            <sp:Layout>\n              <wsp:Policy>\n                <sp:Strict />\n              </wsp:Policy>\n            </sp:Layout>\n            <sp:IncludeTimestamp />\n          </wsp:Policy>\n        </sp:TransportBinding>\n        <sp:SignedSupportingTokens xmlns:sp=\"http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702\">\n          <wsp:Policy>\n            <sp:UsernameToken sp:IncludeToken=\"http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient\" />\n          </wsp:Policy>\n        </sp:SignedSupportingTokens>\n      </wsp:All>\n    </wsp:ExactlyOne>\n  </wsp:Policy>\n</wsdl:definitions>\n",
+    "baseWsdlUri" : "/opt/softwareag/IntegrationServer/instances/default/temp/1650638605748//",
+    "nativeUri" : [ "http://ip-172-30-2-27:5555/ws/com.explorer.wm.contract.first.ws:HelloContractFirstWS/WmExplorerGreetingSOAP" ],
+    "rootFileFolder" : "",
+    "serviceName" : "HelloAPI",
+    "operationsInfo" : [ {
+      "name" : "sayHello",
+      "namespace" : "http://www.wm-explorer.com/ContractFirst/Greeting",
+      "enabled" : true,
+      "bindings" : [ {
+        "name" : "WmExplorerGreeting",
+        "type" : "soap",
+        "specifier" : "",
+        "inputMessage" : "<gre:sayHelloRequest xmlns:gre=\"http://www.wm-explorer.com/ContractFirst/Greeting\">\n  <personalInformation>\n    <firstName>string</firstName>\n    <lastName>string</lastName>\n  </personalInformation>\n</gre:sayHelloRequest>",
+        "outputMessage" : "<gre:sayHelloResponse xmlns:gre=\"http://www.wm-explorer.com/ContractFirst/Greeting\">\n  <greeting>string</greeting>\n</gre:sayHelloResponse>"
+      } ],
+      "mockedResponses" : { },
+      "mockedConditionsBasedCustomResponsesList" : [ ],
+      "defined" : true,
+      "soapAction" : "http://www.wm-explorer.com/ContractFirst/Greeting/sayHello",
+      "isRESTInvokeEnabled" : true,
+      "restEnabledPath" : {
+        "post" : {
+          "consumes" : [ "application/json", "application/xml" ],
+          "produces" : [ "application/json", "application/xml" ],
+          "responses" : {
+            "200" : {
+              "content" : {
+                "application/xml" : {
+                  "schema" : {
+                    "type" : "gateway",
+                    "schema" : "{}"
+                  },
+                  "examples" : { },
+                  "example" : "<gre:sayHelloResponse xmlns:gre=\"http://www.wm-explorer.com/ContractFirst/Greeting\">\n  <greeting>string</greeting>\n</gre:sayHelloResponse>"
+                },
+                "application/json" : {
+                  "schema" : {
+                    "type" : "gateway",
+                    "schema" : "{}"
+                  },
+                  "examples" : { },
+                  "example" : "{\"sayHelloResponse\":{\"$\":\"\\n  \\n\",\"greeting\":\"string\"}}"
+                }
+              },
+              "links" : { },
+              "schema" : { },
+              "examples" : { },
+              "headers" : { }
+            }
+          },
+          "mockedResponses" : { },
+          "mockedConditionsBasedCustomResponsesList" : [ ],
+          "enabled" : true,
+          "requestBody" : {
+            "content" : {
+              "application/xml" : {
+                "schema" : {
+                  "type" : "gateway"
+                },
+                "examples" : { },
+                "example" : "<gre:sayHelloRequest xmlns:gre=\"http://www.wm-explorer.com/ContractFirst/Greeting\">\n  <personalInformation>\n    <firstName>string</firstName>\n    <lastName>string</lastName>\n  </personalInformation>\n</gre:sayHelloRequest>"
+              },
+              "application/json" : {
+                "schema" : {
+                  "type" : "gateway"
+                },
+                "examples" : { },
+                "example" : "{\"sayHelloRequest\":{\"$\":\"\\n  \\n\",\"personalInformation\":{\"$\":\"\\n    \\n    \\n  \",\"firstName\":\"string\",\"lastName\":\"string\"}}}"
+              }
+            },
+            "name" : "requestBody"
+          }
+        },
+        "parameters" : [ {
+          "schema" : {
+            "type" : "string"
+          },
+          "vendorExtensions" : { },
+          "in" : "query",
+          "parameterSchema" : {
+            "type" : "string"
+          },
+          "name" : "test",
+          "type" : "string",
+          "required" : true
+        } ],
+        "enabled" : true,
+        "name" : "sayHello",
+        "invokePath" : "/sayHello"
+      },
+      "scopes" : [ ],
+      "tags" : [ ],
+      "headers" : [ "<head:ContractFirstRequestHeader xmlns:head=\"http://www.wm-explorer.com/ContractFirst/Header\">\n  <messageId>string</messageId>\n  <application>string</application>\n  <user>string</user>\n</head:ContractFirstRequestHeader>" ]
+    } ],
+    "type" : "soap",
+    "serviceRegistryDisplayName" : "HelloAPI_1.0",
+    "operationPolicies" : {
+      "sayHello" : ""
+    },
+    "isRESTInvokeEnabled" : false,
+    "soapToRestConfigurations" : {
+      "useSchemaForTransformation" : true,
+      "removeRootElement" : true,
+      "useDefaultElements" : false
+    }
+  },
+  "nativeEndpoint" : [ {
+    "passSecurityHeaders" : true,
+    "uri" : "http://ip-172-30-2-27:5555/ws/com.explorer.wm.contract.first.ws:HelloContractFirstWS/WmExplorerGreetingSOAP",
+    "connectionTimeoutDuration" : 0,
+    "alias" : false
+  } ],
+  "apiName" : "HelloAPI",
+  "apiVersion" : "1.0",
+  "maturityState" : "Beta",
+  "isActive" : false,
+  "type" : "SOAP",
+  "owner" : "Administrator",
+  "policies" : [ "00345908-f218-4f25-8215-5f5d4f1fe3b7" ],
+  "referencedFiles" : {
+    "WmExplorerHeader.xsd" : "<?xml version=\"1.0\"?>\n<xsd:schema xmlns:tns2=\"http://www.wm-explorer.com/ContractFirst/Header\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" targetNamespace=\"http://www.wm-explorer.com/ContractFirst/Header\">\n  <xsd:element name=\"ContractFirstRequestHeader\" type=\"tns2:ContractFirstRequestHeaderType\"/>\n  <xsd:element name=\"ContractFirstResponseHeader\" type=\"tns2:ContractFirstResponseHeaderType\"/>\n  <xsd:complexType name=\"ContractFirstRequestHeaderType\">\n    <xsd:sequence>\n      <xsd:element name=\"messageId\" nillable=\"true\" type=\"xsd:string\"/>\n      <xsd:element name=\"application\" nillable=\"true\" type=\"xsd:string\"/>\n      <xsd:element name=\"user\" nillable=\"true\" type=\"xsd:string\"/>\n    </xsd:sequence>\n  </xsd:complexType>\n  <xsd:complexType name=\"ContractFirstResponseHeaderType\">\n    <xsd:sequence>\n      <xsd:element name=\"messageId\" nillable=\"true\" type=\"xsd:string\"/>\n      <xsd:element name=\"correlationId\" nillable=\"true\" type=\"xsd:string\"/>\n    </xsd:sequence>\n  </xsd:complexType>\n</xsd:schema>\n",
+    "Hello.xsd" : "<?xml version=\"1.0\"?>\n<xsd:schema xmlns:tns=\"http://www.wm-explorer.com/ContractFirst/Greeting\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" targetNamespace=\"http://www.wm-explorer.com/ContractFirst/Greeting\">\n  <xsd:element name=\"sayHelloRequest\" type=\"tns:sayHelloInput\"/>\n  <xsd:element name=\"sayHelloResponse\" type=\"tns:sayHelloOutput\"/>\n  <xsd:complexType name=\"sayHelloInput\">\n    <xsd:sequence>\n      <xsd:element name=\"personalInformation\" nillable=\"true\" type=\"tns:PersonalInformation\"/>\n    </xsd:sequence>\n  </xsd:complexType>\n  <xsd:complexType name=\"PersonalInformation\">\n    <xsd:sequence>\n      <xsd:element name=\"firstName\" nillable=\"true\" type=\"xsd:string\"/>\n      <xsd:element name=\"lastName\" nillable=\"true\" type=\"xsd:string\"/>\n    </xsd:sequence>\n  </xsd:complexType>\n  <xsd:complexType name=\"sayHelloOutput\">\n    <xsd:sequence>\n      <xsd:element name=\"greeting\" nillable=\"true\" type=\"xsd:string\"/>\n    </xsd:sequence>\n  </xsd:complexType>\n</xsd:schema>\n",
+    "WmExplorer.wsdl" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<wsdl:definitions name=\"WmExplorerGreeting\" targetNamespace=\"http://www.wm-explorer.com/ContractFirst/Greeting\" xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" xmlns:hdr=\"http://www.wm-explorer.com/ContractFirst/Header\" xmlns:tns=\"http://www.wm-explorer.com/ContractFirst/Greeting\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/wsdl/soap/\">\n  <wsdl:types>\n    <xsd:schema xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xsd:import namespace=\"http://www.wm-explorer.com/ContractFirst/Header\" schemaLocation=\"WmExplorerHeader.xsd\"></xsd:import>\n    </xsd:schema>\n    <xsd:schema xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n      <xsd:import namespace=\"http://www.wm-explorer.com/ContractFirst/Greeting\" schemaLocation=\"Hello.xsd\"></xsd:import>\n    </xsd:schema>\n  </wsdl:types>\n  <wsdl:message name=\"sayHelloRequest\">\n    <wsdl:part name=\"parametersSayHelloIn\" element=\"tns:sayHelloRequest\"></wsdl:part>\n  </wsdl:message>\n  <wsdl:message name=\"ResponseHeader\">\n    <wsdl:part name=\"parametersRespHeader\" element=\"hdr:ContractFirstResponseHeader\"></wsdl:part>\n  </wsdl:message>\n  <wsdl:message name=\"sayHelloResponse\">\n    <wsdl:part name=\"parametersSayHelloOut\" element=\"tns:sayHelloResponse\"></wsdl:part>\n  </wsdl:message>\n  <wsdl:message name=\"RequestHeader\">\n    <wsdl:part name=\"parametersReqHeader\" element=\"hdr:ContractFirstRequestHeader\"></wsdl:part>\n  </wsdl:message>\n  <wsdl:portType name=\"WmExplorerGreeting\">\n    <wsdl:operation name=\"sayHello\">\n      <wsdl:input message=\"tns:sayHelloRequest\"></wsdl:input>\n      <wsdl:output message=\"tns:sayHelloResponse\"></wsdl:output>\n    </wsdl:operation>\n  </wsdl:portType>\n  <wsdl:binding name=\"WmExplorerGreeting\" type=\"tns:WmExplorerGreeting\">\n    <soap:binding style=\"document\" transport=\"http://schemas.xmlsoap.org/soap/http\" />\n    <wsdl:operation name=\"sayHello\">\n      <soap:operation soapAction=\"http://www.wm-explorer.com/ContractFirst/Greeting/sayHello\" />\n      <wsdl:input>\n        <soap:body use=\"literal\" />\n        <soap:header message=\"tns:RequestHeader\" part=\"parametersReqHeader\" use=\"literal\"></soap:header>\n      </wsdl:input>\n      <wsdl:output>\n        <soap:body use=\"literal\" />\n        <soap:header message=\"tns:ResponseHeader\" part=\"parametersRespHeader\" use=\"literal\"></soap:header>\n      </wsdl:output>\n    </wsdl:operation>\n  </wsdl:binding>\n  <wsdl:service name=\"com.explorer.wm.contract.first.ws.HelloContractFirstWS\">\n    <wsdl:port name=\"WmExplorerGreetingSOAP\" binding=\"tns:WmExplorerGreeting\">\n      <soap:address location=\"http://ip-172-30-2-27:5555/ws/com.explorer.wm.contract.first.ws:HelloContractFirstWS/WmExplorerGreetingSOAP\" />\n    </wsdl:port>\n  </wsdl:service>\n  <wsp:Policy Name=\"Username Over Transport\" wsu:Id=\"Username_Over_Transport\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\">\n    <wsp:ExactlyOne>\n      <wsp:All>\n        <sp:TransportBinding xmlns:sp=\"http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702\">\n          <wsp:Policy>\n            <sp:TransportToken>\n              <wsp:Policy>\n                <sp:HttpsToken />\n              </wsp:Policy>\n            </sp:TransportToken>\n            <sp:AlgorithmSuite>\n              <wsp:Policy>\n                <sp:Basic256 />\n              </wsp:Policy>\n            </sp:AlgorithmSuite>\n            <sp:Layout>\n              <wsp:Policy>\n                <sp:Strict />\n              </wsp:Policy>\n            </sp:Layout>\n            <sp:IncludeTimestamp />\n          </wsp:Policy>\n        </sp:TransportBinding>\n        <sp:SignedSupportingTokens xmlns:sp=\"http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702\">\n          <wsp:Policy>\n            <sp:UsernameToken sp:IncludeToken=\"http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient\" />\n          </wsp:Policy>\n        </sp:SignedSupportingTokens>\n      </wsp:All>\n    </wsp:ExactlyOne>\n  </wsp:Policy>\n</wsdl:definitions>\n"
+  },
+  "rootFileName" : "WmExplorer.wsdl",
+  "tracingEnabled" : false,
+  "scopes" : [ ],
+  "publishedPortals" : [ ],
+  "creationDate" : "2022-04-19 17:32:52 GMT",
+  "lastModified" : "2022-04-22 14:43:25 GMT",
+  "systemVersion" : 1,
+  "gatewayEndpoints" : { },
+  "id" : "e1b3b40e-37aa-4fc0-88a2-791d74c93e73"
+}

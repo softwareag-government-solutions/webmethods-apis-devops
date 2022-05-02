@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<asset_composite name="APIGatewayAssets" displayName="Assets for API Gateway" runtimeVersion="10.11" targetNamespace="http://namespaces.softwareag.com/webMethods/APIGateway" xmlns="http://namespaces.softwareag.com/acdl/1.0" xmlns:EDA="http://namespaces.softwareag.com/webMethods/EDA" xmlns:MWS="http://namespaces.softwareag.com/webMethods/MWS" xmlns:IS="http://namespaces.softwareag.com/webMethods/IS" xmlns:APIPORTAL="http://namespaces.softwareag.com/webMethods/APIPORTAL" xmlns:AgileApps="http://namespaces.softwareag.com/webMethods/AgileApps" xmlns:BROKER="http://namespaces.softwareag.com/webMethods/BROKER" xmlns:implDetails="http://namespaces.softwareag.com/acdl/implDetails" xmlns:UniversalMessaging="http://namespaces.softwareag.com/webMethods/UniversalMessaging" xmlns:TN="http://namespaces.softwareag.com/webMethods/TN" xmlns:RULES="http://namespaces.softwareag.com/webMethods/RULES" xmlns:BPM="http://namespaces.softwareag.com/webMethods/BPM" xmlns:Optimize="http://namespaces.softwareag.com/webMethods/Optimize">
+    <buildInfo name="BuildTimestamp" value="2022-05-02T19:28:54"/>
+    <asset name="API.e1b3b40e-37aa-4fc0-88a2-791d74c93e73" displayName="HelloAPI[1.0]" isDeployable="true">
+        <implementation.generic type="API"/>
+        <dependsOn>APIGateway:Policy.00345908-f218-4f25-8215-5f5d4f1fe3b7</dependsOn>
+    </asset>
+    <asset name="Policy.00345908-f218-4f25-8215-5f5d4f1fe3b7" displayName="Policy For API HelloAPI[1.0]" isDeployable="true">
+        <implementation.generic type="Policy"/>
+        <dependsOn>APIGateway:PolicyAction.1f23eab2-dcd1-4fbf-aa67-faf45d2d0473</dependsOn>
+        <dependsOn>APIGateway:PolicyAction.8b54fa2a-c0cb-4953-a9b6-478a05c9ead7</dependsOn>
+        <dependsOn>APIGateway:PolicyAction.a5172fad-818f-4130-b269-e3d04263a021</dependsOn>
+        <dependsOn>APIGateway:PolicyAction.b2a03dd2-2808-478f-94aa-dd5e6539f0ce</dependsOn>
+    </asset>
+    <asset name="PolicyAction.b2a03dd2-2808-478f-94aa-dd5e6539f0ce" displayName="Policy Action [Invoke webMethods IS] -&gt; Policy For API HelloAPI[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+    <asset name="PolicyAction.8b54fa2a-c0cb-4953-a9b6-478a05c9ead7" displayName="Policy Action [Validate API Specification] -&gt; Policy For API HelloAPI[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+    <asset name="PolicyAction.a5172fad-818f-4130-b269-e3d04263a021" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API HelloAPI[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+    <asset name="PolicyAction.1f23eab2-dcd1-4fbf-aa67-faf45d2d0473" displayName="Policy Action [Enable HTTP / HTTPS] -&gt; Policy For API HelloAPI[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+</asset_composite>

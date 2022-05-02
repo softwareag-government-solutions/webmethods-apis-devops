@@ -1,0 +1,40 @@
+{
+  "id" : "00345908-f218-4f25-8215-5f5d4f1fe3b7",
+  "names" : [ {
+    "value" : "Default Policy for API HelloAPI",
+    "locale" : "English"
+  } ],
+  "descriptions" : [ {
+    "value" : "",
+    "locale" : "English"
+  } ],
+  "scope" : {
+    "scopeConditions" : [ ]
+  },
+  "policyEnforcements" : [ {
+    "enforcements" : [ {
+      "enforcementObjectId" : "b2a03dd2-2808-478f-94aa-dd5e6539f0ce",
+      "order" : "0"
+    }, {
+      "enforcementObjectId" : "8b54fa2a-c0cb-4953-a9b6-478a05c9ead7",
+      "order" : "1"
+    } ],
+    "stageKey" : "requestPayloadProcessing"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "a5172fad-818f-4130-b269-e3d04263a021",
+      "order" : "0"
+    } ],
+    "stageKey" : "routing"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "1f23eab2-dcd1-4fbf-aa67-faf45d2d0473",
+      "order" : "0"
+    } ],
+    "stageKey" : "transport"
+  } ],
+  "policyScope" : "SERVICE",
+  "global" : false,
+  "active" : false,
+  "systemPolicy" : false
+}

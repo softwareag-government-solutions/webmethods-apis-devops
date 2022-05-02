@@ -1,0 +1,22 @@
+{
+  "id" : "b2a03dd2-2808-478f-94aa-dd5e6539f0ce",
+  "names" : [ {
+    "value" : "Invoke webMethods IS",
+    "locale" : "en"
+  } ],
+  "templateKey" : "requestInvokeESB",
+  "parameters" : [ {
+    "templateKey" : "invokeISService",
+    "parameters" : [ {
+      "templateKey" : "serviceName",
+      "values" : [ "IRS.request:processRequest" ]
+    }, {
+      "templateKey" : "runAsUser",
+      "values" : [ "Administrator" ]
+    }, {
+      "templateKey" : "complyToISSpec",
+      "values" : [ "true" ]
+    } ]
+  } ],
+  "active" : false
+}
