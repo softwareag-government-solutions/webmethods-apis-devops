@@ -93,7 +93,7 @@ main(){
   usage
   fi
 
-  deploy_api_fromlocal "$api_project" "$environment" "$apigwurl" "$apigwusername" "$apigwpassword"
+  deploy_api "$api_project" "$environment" "$apigwurl" "$apigwusername" "$apigwpassword"
 }
 
 #Call the main function with all arguments passed in...

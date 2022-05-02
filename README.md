@@ -36,6 +36,8 @@ This is usually something you do at the begining of your work to make sure you w
 ./gateway_import_export_utils.sh --import --api_name uszip --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 
 ./gateway_import_export_utils.sh --import --api_name sagtours --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+
+./gateway_import_export_utils.sh --import --api_name helloapi --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 ```
 
 ### Save the APIs in git once work is done on the development APIGateway
@@ -50,6 +52,8 @@ This is an incremental operation, as work gets done... and especially at the end
 ./gateway_import_export_utils.sh --export --api_name uszip --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 
 ./gateway_import_export_utils.sh --export --api_name sagtours --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+
+./gateway_import_export_utils.sh --export --api_name helloapi --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 ```
 
 ## Deployment - Option 1 - CD only, directly from Git code (without storing in artifact repo)
@@ -62,6 +66,7 @@ sh gateway_deploy_fromlocal.sh --api_project "bookstore" --environment "qa" --ap
 sh gateway_deploy_fromlocal.sh --api_project "covid" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
 sh gateway_deploy_fromlocal.sh --api_project "uszip" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
 sh gateway_deploy_fromlocal.sh --api_project "sagtours" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
+sh gateway_deploy_fromlocal.sh --api_project "helloapi" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
 ```
 
 ## Deployment - Option 2 - CI/CD (with storing in artifact repo)

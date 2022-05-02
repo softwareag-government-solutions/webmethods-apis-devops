@@ -78,9 +78,9 @@ import_api() {
 
 ##############################################################################
 ## Import an API to the API Gateway Server.
-## Usage: deploy_api_fromlocal <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
+## Usage: deploy_api <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
 ##############################################################################
-deploy_api_fromlocal() {
+deploy_api() {
 	api_project="$1"
 	environment="$2"
 	url="$3"
@@ -184,7 +184,7 @@ stage_api() {
 
 ##############################################################################
 ## Import an API to the API Gateway Server.
-## Usage: deploy_api_fromlocal <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
+## Usage: deploy_api <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
 ##############################################################################
 package_api_build() {
 	api_project="$1"
@@ -227,9 +227,9 @@ staging_builds_dir() {
 
 ##############################################################################
 ## Deploy an API project to the API Gateway Server.
-## Usage: deploy_api_build <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
+## Usage: deploy_staged_api <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
 ##############################################################################
-deploy_api_build() {
+deploy_staged_api() {
 	## api build details
 	api_project="$1"
 	build_version="$2"

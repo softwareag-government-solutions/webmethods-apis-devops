@@ -117,7 +117,7 @@ main(){
   usage
   fi
 
-  deploy_api_build "$api_project" "$build_version" "$repodir" "$environment" "$apigwurl" "$apigwusername" "$apigwpassword"
+  deploy_staged_api "$api_project" "$build_version" "$repodir" "$environment" "$apigwurl" "$apigwusername" "$apigwpassword"
 }
 
 #Call the main function with all arguments passed in...
