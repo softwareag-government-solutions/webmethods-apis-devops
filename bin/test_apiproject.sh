@@ -3,9 +3,12 @@
 . ./common.sh
 
 ## variables
+api_project_basedir=$BASEDIR/apis
+api_package_extract_basedir=$BASEDIR/tmp
+
 api_project=
-build_version=
-environment=
+api_project_package=
+stagename=
 testsuite=
 testenvvars=
 
@@ -13,9 +16,9 @@ testenvvars=
 usage(){
   echo "Usage: $0 args"
   echo "args:"
-  echo "--api_project		      *The API project to import"
-  echo "--build_version       the revision for the build"
-  echo "--environment         The environment level"
+  echo "--api_project		           The API project to import (as defined in $BASEDIR/apis)"
+  echo "--api_project_package      A zip file of the api project - if specified, api_project"
+  echo "--stagename                The stagename level"
   echo "--testsuite           The test suite to run. If not specified, all tests will be run."
   echo "--testenvvars         Some extra env vars to pass for the test, semi-colon separated"
   exit
@@ -31,12 +34,12 @@ parseArgs(){
         api_project=${1}
         shift
       ;;
-      --build_version)
-        build_version=${1}
+      --api_project_package)
+        api_project_package=${1}
         shift
-      ;;    
-      --environment)
-        environment=${1}
+      ;;  
+      --stagename)
+        stagename=${1}
         shift
 	    ;;
       --testsuite)
@@ -46,7 +49,7 @@ parseArgs(){
       --testenvvars)
         testenvvars=${1}
         shift
-      ;;	
+      ;;
       -h|--help)
         usage
       ;;
@@ -63,22 +66,10 @@ main(){
   #Parseinputarguments
   parseArgs "$@"
 
-  if [ -z "$api_project" ] 
+  if [ -z "$stagename" ] 
   then 
-    echo "API project name is missing" 
-  usage
-  fi
-
-  if [ -z "$build_version" ] 
-  then 
-    echo "Build version is missing" 
-  usage
-  fi
-
-  if [ -z "$environment" ] 
-  then 
-    echo "environment is missing" 
-  usage
+    echo "stagename is missing" 
+    usage
   fi
 
   if [ -z "$testsuite" ] 
@@ -86,7 +77,35 @@ main(){
     testsuite="all"
   fi
 
-  run_test_suite "$api_project" "$build_version" "$testsuite" "$environment" "$testenvvars"
+  if [[ -z "$api_project" && -z $api_project_package ]] 
+  then 
+    echo "One of required 'API project name' or 'API project package' is missing..." 
+    usage
+  fi
+
+  # set the path to the api project
+  if [ "x$api_project" != "x" ]; then
+    api_project_dir="$api_project_basedir/$api_project"
+  fi
+
+  # if package path if provided, then potentially overwrite the path to the project
+	if [ -f "$api_project_package" ]; then
+    extract_dir="$api_package_extract_basedir/$(basename $api_project_package)/"
+    
+    # clear extract dir if if was already there
+    if [ -d "$extract_dir" ]; then
+      rm -Rf $extract_dir
+    fi
+    mkdir -p $extract_dir
+    
+    # unzip package
+    unzip -o $api_project_package -d $extract_dir/
+
+    # set new deploy dir
+    api_project_dir=$extract_dir
+  fi
+
+  run_test_suite "$api_project_dir" "$stagename" "$testsuite" "$testenvvars"
 }
 
 #Call the main function with all arguments passed in...
