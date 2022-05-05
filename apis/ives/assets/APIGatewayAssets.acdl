@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <asset_composite name="APIGatewayAssets" displayName="Assets for API Gateway" runtimeVersion="10.11" targetNamespace="http://namespaces.softwareag.com/webMethods/APIGateway" xmlns="http://namespaces.softwareag.com/acdl/1.0" xmlns:EDA="http://namespaces.softwareag.com/webMethods/EDA" xmlns:MWS="http://namespaces.softwareag.com/webMethods/MWS" xmlns:IS="http://namespaces.softwareag.com/webMethods/IS" xmlns:APIPORTAL="http://namespaces.softwareag.com/webMethods/APIPORTAL" xmlns:AgileApps="http://namespaces.softwareag.com/webMethods/AgileApps" xmlns:BROKER="http://namespaces.softwareag.com/webMethods/BROKER" xmlns:implDetails="http://namespaces.softwareag.com/acdl/implDetails" xmlns:UniversalMessaging="http://namespaces.softwareag.com/webMethods/UniversalMessaging" xmlns:TN="http://namespaces.softwareag.com/webMethods/TN" xmlns:RULES="http://namespaces.softwareag.com/webMethods/RULES" xmlns:BPM="http://namespaces.softwareag.com/webMethods/BPM" xmlns:Optimize="http://namespaces.softwareag.com/webMethods/Optimize">
-    <buildInfo name="BuildTimestamp" value="2022-05-05T18:51:12"/>
+    <buildInfo name="BuildTimestamp" value="2022-05-05T18:58:23"/>
     <asset name="API.9d6c732f-5e4a-478d-a72e-ff884066edfd" displayName="MyIVESAPI[1.0]" isDeployable="true">
         <implementation.generic type="API"/>
         <dependsOn>APIGateway:Policy.3eb57016-3035-4e4b-9473-4e2794d0e50a</dependsOn>
@@ -13,6 +13,13 @@
     </asset>
     <asset name="PolicyAction.b6c21445-ff96-4b52-ac34-a098d546682e" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API MyIVESAPI[1.0]" isDeployable="true">
         <implementation.generic type="PolicyAction"/>
+        <dependsOn>APIGateway:Alias.106ec776-357c-48df-aef9-ff04e41c1e7b</dependsOn>
+    </asset>
+    <asset name="Alias.106ec776-357c-48df-aef9-ff04e41c1e7b" displayName="ives_alias" isDeployable="true">
+        <implementation.generic type="Alias"/>
+        <property name="value for Simple alias ives_alias" many="false" isSecure="false" displayName="value for Simple alias ives_alias">
+            <value>http://ives.local:1234</value>
+        </property>
     </asset>
     <asset name="PolicyAction.924501af-1435-4d63-99c4-7fbedbaefbf7" displayName="Policy Action [Service Result Cache] -&gt; Policy For API MyIVESAPI[1.0]" isDeployable="true">
         <implementation.generic type="PolicyAction"/>
@@ -32,6 +39,7 @@
     </asset>
     <asset name="PolicyAction.31dcbc8c-fd5d-405a-aa02-f45b1f533c8b" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API MyNewAPI[1.0]" isDeployable="true">
         <implementation.generic type="PolicyAction"/>
+        <dependsOn>APIGateway:Alias.106ec776-357c-48df-aef9-ff04e41c1e7b</dependsOn>
     </asset>
     <asset name="PolicyAction.6a1edab4-dc0a-41dd-a37f-867cfae325f1" displayName="Policy Action [Identify &amp; Authorize] -&gt; Policy For API MyNewAPI[1.0]" isDeployable="true">
         <implementation.generic type="PolicyAction"/>

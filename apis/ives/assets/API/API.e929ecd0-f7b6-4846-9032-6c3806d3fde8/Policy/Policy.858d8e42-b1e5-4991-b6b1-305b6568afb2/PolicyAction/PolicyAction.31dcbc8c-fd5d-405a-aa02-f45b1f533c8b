@@ -7,7 +7,7 @@
   "templateKey" : "straightThroughRouting",
   "parameters" : [ {
     "templateKey" : "endpointUri",
-    "values" : [ "http://test.gov/${sys:resource_path}" ]
+    "values" : [ "${ives_alias}/testing2/${sys:resource_path}" ]
   }, {
     "templateKey" : "method",
     "values" : [ "CUSTOM" ]

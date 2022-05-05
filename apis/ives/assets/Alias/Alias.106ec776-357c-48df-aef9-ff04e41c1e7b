@@ -1,0 +1,8 @@
+{
+  "id" : "106ec776-357c-48df-aef9-ff04e41c1e7b",
+  "name" : "ives_alias",
+  "description" : "ives alias",
+  "type" : "simple",
+  "owner" : "Administrator",
+  "value" : "http://ives.local:1234"
+}
