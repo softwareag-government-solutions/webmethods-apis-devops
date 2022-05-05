@@ -8,16 +8,27 @@
     "value" : "",
     "locale" : "English"
   } ],
+  "scope" : {
+    "scopeConditions" : [ ]
+  },
   "policyEnforcements" : [ {
     "enforcements" : [ {
-      "enforcementObjectId" : "e00fcc61-efaf-416c-b29f-803b8ffab18d"
-    } ],
-    "stageKey" : "transport"
-  }, {
-    "enforcements" : [ {
-      "enforcementObjectId" : "b6c21445-ff96-4b52-ac34-a098d546682e"
+      "enforcementObjectId" : "b6c21445-ff96-4b52-ac34-a098d546682e",
+      "order" : "0"
     } ],
     "stageKey" : "routing"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "924501af-1435-4d63-99c4-7fbedbaefbf7",
+      "order" : "0"
+    } ],
+    "stageKey" : "LMT"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "e00fcc61-efaf-416c-b29f-803b8ffab18d",
+      "order" : "0"
+    } ],
+    "stageKey" : "transport"
   } ],
   "policyScope" : "SERVICE",
   "global" : false,

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <asset_composite name="APIGatewayAssets" displayName="Assets for API Gateway" runtimeVersion="10.11" targetNamespace="http://namespaces.softwareag.com/webMethods/APIGateway" xmlns="http://namespaces.softwareag.com/acdl/1.0" xmlns:EDA="http://namespaces.softwareag.com/webMethods/EDA" xmlns:MWS="http://namespaces.softwareag.com/webMethods/MWS" xmlns:IS="http://namespaces.softwareag.com/webMethods/IS" xmlns:APIPORTAL="http://namespaces.softwareag.com/webMethods/APIPORTAL" xmlns:AgileApps="http://namespaces.softwareag.com/webMethods/AgileApps" xmlns:BROKER="http://namespaces.softwareag.com/webMethods/BROKER" xmlns:implDetails="http://namespaces.softwareag.com/acdl/implDetails" xmlns:UniversalMessaging="http://namespaces.softwareag.com/webMethods/UniversalMessaging" xmlns:TN="http://namespaces.softwareag.com/webMethods/TN" xmlns:RULES="http://namespaces.softwareag.com/webMethods/RULES" xmlns:BPM="http://namespaces.softwareag.com/webMethods/BPM" xmlns:Optimize="http://namespaces.softwareag.com/webMethods/Optimize">
-    <buildInfo name="BuildTimestamp" value="2022-05-05T18:50:04"/>
+    <buildInfo name="BuildTimestamp" value="2022-05-05T18:51:12"/>
     <asset name="API.9d6c732f-5e4a-478d-a72e-ff884066edfd" displayName="MyIVESAPI[1.0]" isDeployable="true">
         <implementation.generic type="API"/>
         <dependsOn>APIGateway:Policy.3eb57016-3035-4e4b-9473-4e2794d0e50a</dependsOn>
     </asset>
     <asset name="Policy.3eb57016-3035-4e4b-9473-4e2794d0e50a" displayName="Policy For API MyIVESAPI[1.0]" isDeployable="true">
         <implementation.generic type="Policy"/>
+        <dependsOn>APIGateway:PolicyAction.924501af-1435-4d63-99c4-7fbedbaefbf7</dependsOn>
         <dependsOn>APIGateway:PolicyAction.b6c21445-ff96-4b52-ac34-a098d546682e</dependsOn>
         <dependsOn>APIGateway:PolicyAction.e00fcc61-efaf-416c-b29f-803b8ffab18d</dependsOn>
     </asset>
-    <asset name="PolicyAction.e00fcc61-efaf-416c-b29f-803b8ffab18d" displayName="Policy Action [Enable HTTP / HTTPS] -&gt; Policy For API MyIVESAPI[1.0]" isDeployable="true">
+    <asset name="PolicyAction.b6c21445-ff96-4b52-ac34-a098d546682e" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API MyIVESAPI[1.0]" isDeployable="true">
         <implementation.generic type="PolicyAction"/>
     </asset>
-    <asset name="PolicyAction.b6c21445-ff96-4b52-ac34-a098d546682e" displayName="Policy Action [Straight Through Routing] -&gt; Policy For API MyIVESAPI[1.0]" isDeployable="true">
+    <asset name="PolicyAction.924501af-1435-4d63-99c4-7fbedbaefbf7" displayName="Policy Action [Service Result Cache] -&gt; Policy For API MyIVESAPI[1.0]" isDeployable="true">
+        <implementation.generic type="PolicyAction"/>
+    </asset>
+    <asset name="PolicyAction.e00fcc61-efaf-416c-b29f-803b8ffab18d" displayName="Policy Action [Enable HTTP / HTTPS] -&gt; Policy For API MyIVESAPI[1.0]" isDeployable="true">
         <implementation.generic type="PolicyAction"/>
     </asset>
     <asset name="API.e929ecd0-f7b6-4846-9032-6c3806d3fde8" displayName="MyNewAPI[1.0]" isDeployable="true">

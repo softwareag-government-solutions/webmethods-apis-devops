@@ -1,0 +1,16 @@
+{
+  "id" : "924501af-1435-4d63-99c4-7fbedbaefbf7",
+  "names" : [ {
+    "value" : "Service Result Cache",
+    "locale" : "en"
+  } ],
+  "templateKey" : "serviceResultCache",
+  "parameters" : [ {
+    "templateKey" : "ttl",
+    "values" : [ "2" ]
+  }, {
+    "templateKey" : "max-payload-size",
+    "values" : [ "10" ]
+  } ],
+  "active" : false
+}
