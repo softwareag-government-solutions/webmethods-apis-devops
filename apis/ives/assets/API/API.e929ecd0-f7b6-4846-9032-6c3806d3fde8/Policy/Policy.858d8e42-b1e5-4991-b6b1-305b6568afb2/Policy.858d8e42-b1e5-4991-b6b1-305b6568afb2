@@ -1,0 +1,37 @@
+{
+  "id" : "858d8e42-b1e5-4991-b6b1-305b6568afb2",
+  "names" : [ {
+    "value" : "Default Policy for API MyNewAPI",
+    "locale" : "English"
+  } ],
+  "descriptions" : [ {
+    "value" : "",
+    "locale" : "English"
+  } ],
+  "scope" : {
+    "scopeConditions" : [ ]
+  },
+  "policyEnforcements" : [ {
+    "enforcements" : [ {
+      "enforcementObjectId" : "31dcbc8c-fd5d-405a-aa02-f45b1f533c8b",
+      "order" : "0"
+    } ],
+    "stageKey" : "routing"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "6a1edab4-dc0a-41dd-a37f-867cfae325f1",
+      "order" : "0"
+    } ],
+    "stageKey" : "IAM"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "3cbf2525-db1a-4921-9e0b-78fa306f5d1d",
+      "order" : "0"
+    } ],
+    "stageKey" : "transport"
+  } ],
+  "policyScope" : "SERVICE",
+  "global" : false,
+  "active" : false,
+  "systemPolicy" : false
+}

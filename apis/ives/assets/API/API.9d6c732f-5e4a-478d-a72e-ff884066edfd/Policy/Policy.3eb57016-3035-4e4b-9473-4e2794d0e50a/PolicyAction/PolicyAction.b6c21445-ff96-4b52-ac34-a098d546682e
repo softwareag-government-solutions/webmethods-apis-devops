@@ -1,0 +1,17 @@
+{
+  "id" : "b6c21445-ff96-4b52-ac34-a098d546682e",
+  "names" : [ {
+    "value" : "Straight Through Routing",
+    "locale" : "en"
+  } ],
+  "descriptions" : [ {
+    "value" : "",
+    "locale" : "English"
+  } ],
+  "templateKey" : "straightThroughRouting",
+  "parameters" : [ {
+    "templateKey" : "endpointUri",
+    "values" : [ "http://texas.gov/${sys:resource_path}" ]
+  } ],
+  "active" : false
+}

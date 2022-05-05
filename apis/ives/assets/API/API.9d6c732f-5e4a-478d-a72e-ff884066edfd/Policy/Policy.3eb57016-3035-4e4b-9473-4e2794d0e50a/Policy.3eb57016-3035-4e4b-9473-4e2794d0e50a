@@ -1,0 +1,26 @@
+{
+  "id" : "3eb57016-3035-4e4b-9473-4e2794d0e50a",
+  "names" : [ {
+    "value" : "Default Policy for API MyIVESAPI",
+    "locale" : "English"
+  } ],
+  "descriptions" : [ {
+    "value" : "",
+    "locale" : "English"
+  } ],
+  "policyEnforcements" : [ {
+    "enforcements" : [ {
+      "enforcementObjectId" : "e00fcc61-efaf-416c-b29f-803b8ffab18d"
+    } ],
+    "stageKey" : "transport"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "b6c21445-ff96-4b52-ac34-a098d546682e"
+    } ],
+    "stageKey" : "routing"
+  } ],
+  "policyScope" : "SERVICE",
+  "global" : false,
+  "active" : false,
+  "systemPolicy" : false
+}

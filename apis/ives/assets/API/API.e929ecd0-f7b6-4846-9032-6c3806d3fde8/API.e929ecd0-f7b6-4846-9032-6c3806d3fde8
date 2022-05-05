@@ -1,0 +1,53 @@
+{
+  "apiDefinition" : {
+    "info" : {
+      "version" : "1.0",
+      "title" : "MyNewAPI"
+    },
+    "serviceRegistryDisplayName" : "MyNewAPI_1.0",
+    "schemes" : [ ],
+    "security" : [ ],
+    "paths" : { },
+    "securityDefinitions" : { },
+    "definitions" : { },
+    "parameters" : { },
+    "baseUriParameters" : [ ],
+    "externalDocs" : [ ],
+    "servers" : [ {
+      "url" : "http://test.gov",
+      "variables" : { }
+    } ],
+    "components" : {
+      "schemas" : { },
+      "responses" : { },
+      "parameters" : { },
+      "examples" : { },
+      "requestBodies" : { },
+      "headers" : { },
+      "links" : { },
+      "callbacks" : { }
+    },
+    "type" : "rest"
+  },
+  "nativeEndpoint" : [ {
+    "passSecurityHeaders" : true,
+    "uri" : "http://test.gov",
+    "connectionTimeoutDuration" : 0,
+    "alias" : false
+  } ],
+  "apiName" : "MyNewAPI",
+  "apiVersion" : "1.0",
+  "maturityState" : "Beta",
+  "isActive" : false,
+  "type" : "REST",
+  "owner" : "Administrator",
+  "policies" : [ "858d8e42-b1e5-4991-b6b1-305b6568afb2" ],
+  "tracingEnabled" : false,
+  "scopes" : [ ],
+  "publishedPortals" : [ ],
+  "creationDate" : "2022-05-05 18:44:46 GMT",
+  "lastModified" : "2022-05-05 18:45:04 GMT",
+  "systemVersion" : 1,
+  "gatewayEndpoints" : { },
+  "id" : "e929ecd0-f7b6-4846-9032-6c3806d3fde8"
+}
