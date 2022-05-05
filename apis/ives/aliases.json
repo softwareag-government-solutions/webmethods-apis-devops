@@ -13,7 +13,7 @@
       "description" : "ives alias",
       "type" : "simple",
       "owner" : "Administrator",
-      "value" : "http://ives-dsit.local:1234"
+      "value" : "http://ives-dsit123.local:1234"
     }
   }
 }
