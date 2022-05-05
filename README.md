@@ -29,15 +29,15 @@ echo -n "QA ENV Administrator password: "; read -s password; export APIGW_QA_DEP
 This is usually something you do at the begining of your work to make sure you work on the latest version of the API based on what's in GIT (especially to accound for other people having possibly added new policies etc...)
 
 ```bash
-./gateway_import_export_utils.sh --import --api_name bookstore --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+./dev_import_export.sh --import --api_name bookstore --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 
-./gateway_import_export_utils.sh --import --api_name covid --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+./dev_import_export.sh --import --api_name covid --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 
-./gateway_import_export_utils.sh --import --api_name uszip --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+./dev_import_export.sh --import --api_name uszip --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 
-./gateway_import_export_utils.sh --import --api_name sagtours --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+./dev_import_export.sh --import --api_name sagtours --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 
-./gateway_import_export_utils.sh --import --api_name helloapi --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+./dev_import_export.sh --import --api_name helloapi --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 ```
 
 ### Save the APIs in git once work is done on the development APIGateway
@@ -45,15 +45,15 @@ This is usually something you do at the begining of your work to make sure you w
 This is an incremental operation, as work gets done... and especially at the end of the work to make sure everything gets saved in GIT.
 
 ```bash
-./gateway_import_export_utils.sh --export --api_name bookstore --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+./dev_import_export.sh --export --api_name bookstore --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 
-./gateway_import_export_utils.sh --export --api_name covid --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+./dev_import_export.sh --export --api_name covid --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 
-./gateway_import_export_utils.sh --export --api_name uszip --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+./dev_import_export.sh --export --api_name uszip --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 
-./gateway_import_export_utils.sh --export --api_name sagtours --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+./dev_import_export.sh --export --api_name sagtours --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 
-./gateway_import_export_utils.sh --export --api_name helloapi --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
+./dev_import_export.sh --export --api_name helloapi --apigateway_url $APIGW_MYLOCALDEV_URL --username $APIGW_MYLOCALDEV_DEPLOY_USER --password $APIGW_MYLOCALDEV_DEPLOY_PASSWORD
 ```
 
 ## Deployment - Option 1 - CD only, directly from Git code (without storing in artifact repo)
@@ -109,7 +109,7 @@ sh deploy_apiproject.sh --api_project_package "../staged/sagtours-1.0.1.zip" --s
 ## Run API Tests
 
 ```bash
-sh test_apiproject.sh --api_project "bookstore" --build_version "1.0.1" --stagename "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
-sh test_apiproject.sh --api_project "covid" --build_version "1.0.1" --stagename "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
-sh test_apiproject.sh --api_project "uszip" --build_version "1.0.1" --stagename "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
+sh test_apiproject.sh --api_project_package "../staged/bookstore-1.0.1.zip" --stagename "qa" --testenvvars "baseUrl=$APIGW_QA_URL"
+sh test_apiproject.sh --api_project_package "../staged/covid-1.0.1.zip" --stagename "qa" --testenvvars "baseUrl=$APIGW_QA_URL"
+sh test_apiproject.sh --api_project_package "../staged/uszip-1.0.1.zip" --stagename "qa" --testenvvars "baseUrl=$APIGW_QA_URL"
 ```

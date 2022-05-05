@@ -111,6 +111,10 @@
           "consumes" : [ ],
           "produces" : [ "*/*" ],
           "parameters" : [ {
+            "schema" : {
+              "readOnly" : false,
+              "type" : "string"
+            },
             "in" : "path",
             "parameterSchema" : {
               "readOnly" : false,
@@ -150,6 +154,10 @@
           "operationId" : "updateBook",
           "consumes" : [ "application/json" ],
           "parameters" : [ {
+            "schema" : {
+              "readOnly" : false,
+              "type" : "string"
+            },
             "in" : "path",
             "parameterSchema" : {
               "readOnly" : false,
@@ -189,6 +197,10 @@
           "operationId" : "deleteBook",
           "consumes" : [ ],
           "parameters" : [ {
+            "schema" : {
+              "readOnly" : false,
+              "type" : "string"
+            },
             "in" : "path",
             "parameterSchema" : {
               "readOnly" : false,
@@ -256,7 +268,7 @@
   } ],
   "apiName" : "bookstore",
   "apiVersion" : "1.0",
-  "apiDescription" : "bookstore apis updated by fabien\n",
+  "apiDescription" : "bookstore apis updated again!\n",
   "maturityState" : "Test",
   "isActive" : true,
   "type" : "REST",
@@ -287,7 +299,7 @@
   } ],
   "publishedPortals" : [ ],
   "creationDate" : "2021-03-16 02:02:50 GMT",
-  "lastModified" : "2022-03-23 03:00:47 GMT",
+  "lastModified" : "2022-05-05 18:39:26 GMT",
   "nextVersion" : "17b41062-236b-4c0e-9dbd-f2f3164edd4c",
   "systemVersion" : 1,
   "gatewayEndpoints" : { },

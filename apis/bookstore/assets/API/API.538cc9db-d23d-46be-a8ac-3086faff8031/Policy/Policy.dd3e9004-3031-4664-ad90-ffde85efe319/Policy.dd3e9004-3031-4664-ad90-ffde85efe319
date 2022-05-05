@@ -19,6 +19,18 @@
     "stageKey" : "routing"
   }, {
     "enforcements" : [ {
+      "enforcementObjectId" : "b356a1dd-4b43-4e28-ac2f-4a0cc3cfa3c0",
+      "order" : "0"
+    } ],
+    "stageKey" : "LMT"
+  }, {
+    "enforcements" : [ {
+      "enforcementObjectId" : "fad4e417-f44c-4485-9688-d6388c293e2c",
+      "order" : "0"
+    } ],
+    "stageKey" : "IAM"
+  }, {
+    "enforcements" : [ {
       "enforcementObjectId" : "4ec4e166-961e-4740-a8bf-4478d5ad70ea",
       "order" : "0"
     } ],
