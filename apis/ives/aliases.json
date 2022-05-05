@@ -1,4 +1,19 @@
 {
-  "helloapi_endpoint": {
+  "ives_alias": {
+    "id" : "106ec776-357c-48df-aef9-ff04e41c1e7b",
+    "dev": {
+      "name" : "ives_alias",
+      "description" : "ives alias",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://ives-dev.local:1234"
+    },
+    "qa": {
+      "name" : "ives_alias",
+      "description" : "ives alias",
+      "type" : "simple",
+      "owner" : "Administrator",
+      "value" : "http://ives-dsit.local:1234"
+    }
   }
 }
