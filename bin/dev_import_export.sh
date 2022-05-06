@@ -5,7 +5,7 @@
 ## as a flat file representation of the VCS.
 ## Parameters: 
 ## import(or)export           To import or export from the flat file.
-## api_name	                  The API project to import.
+## api_project	                  The API project to import.
 ## apigateway_url		      APIGateway url to import or export from.Default is http://localhost:5555.
 ## apigateway_es_port		  API Gateway Elastic search port.Default is 9240
 ## username                   The APIGateway username.Default is Administrator.
@@ -17,14 +17,14 @@ CURR_DIR="$PWD"
 url=http://localhost:5555
 username=Administrator
 password=manage
-api=
+apiproject=
 shldDoImport=
 #Usage of this script
 usage(){
 echo "Usage: $0 args"
 echo "args:"
 echo "--import(or)--export  *To import or export from the flat file"
-echo "--api_name		    *The API project to import"
+echo "--api_project		      *The API project to import"
 echo "--apigateway_url      APIGateway url to import or export from.Default is http://localhost:5555"
 echo "--username            The APIGateway username.Default is Administrator."
 echo "--password            The APIGateway password.Default is password."
@@ -41,8 +41,8 @@ parseArgs(){
         url=${1}
         shift
       ;;
-      --api_name)
-        api=${1}
+      --api_project)
+        apiproject=${1}
         shift
       ;;
       --username)
@@ -74,9 +74,9 @@ parseArgs(){
 main(){
 #Parseinputarguments
 parseArgs "$@"
-if [ -z "$api" ] 
+if [ -z "$apiproject" ] 
 then 
-	echo "API name is missing" 
+	echo "API project name is missing" 
 usage
 fi
 if [ -z "$shldDoImport" ] 
@@ -87,10 +87,10 @@ fi
 
 if [ "$shldDoImport" = "true" ]
 then
-    echo "Importing the API"
-	import_api $api $url $username $password
+    echo "Importing the API project"
+	import_api $apiproject $url $username $password
 else
-	export_api $api $url $username $password
+	export_api $apiproject $url $username $password
 fi
 }
 

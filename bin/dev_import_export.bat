@@ -13,7 +13,7 @@ IF NOT "%1"=="" (
       SET TENANT=%2
       SHIFT
   )
-  IF "%1"=="--api_name" (
+  IF "%1"=="--api_project" (
       SET PROJECT_NAME=%2
       SHIFT
   ) ELSE IF "%1"=="--environment" (
@@ -57,7 +57,7 @@ IF EXIST %CURRENT_DIR%\%TENANT%\apis\%PROJECT_NAME%\assets (
  goto :EOF
 ) ELSE (
   echo "Folder %CURRENT_DIR%\%TENANT%\apis\%PROJECT_NAME%\assets does not exist"
-  echo "API with name %PROJECT_NAME% does not exist"
+  echo "API project with name %PROJECT_NAME% does not exist"
   goto :EOF
 )
 
@@ -71,7 +71,7 @@ IF EXIST %CURRENT_DIR%\%TENANT%\apis\%PROJECT_NAME%\assets (
   goto :EOF
 ) ELSE (
   echo "Folder %CURRENT_DIR%\%TENANT%\apis\%PROJECT_NAME%\assets does not exist"
-  echo "API with name %PROJECT_NAME% does not exist"
+  echo "API project with name %PROJECT_NAME% does not exist"
   goto :EOF
 )
 
