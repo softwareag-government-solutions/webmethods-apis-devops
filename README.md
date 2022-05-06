@@ -62,11 +62,11 @@ In this option, we don't store a "build" in an artifact repo...we simply push th
 ### deploy
 
 ```bash
-sh deploy_apiproject.sh --api_project "bookstore" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
-sh deploy_apiproject.sh --api_project "covid" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
-sh deploy_apiproject.sh --api_project "uszip" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
-sh deploy_apiproject.sh --api_project "sagtours" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
-sh deploy_apiproject.sh --api_project "helloapi" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
+sh deploy_apiproject.sh --api_project "bookstore" --stagename "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
+sh deploy_apiproject.sh --api_project "covid" --stagename "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
+sh deploy_apiproject.sh --api_project "uszip" --stagename "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
+sh deploy_apiproject.sh --api_project "sagtours" --stagename "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
+sh deploy_apiproject.sh --api_project "helloapi" --stagename "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
 ```
 
 ## Deployment - Option 2 - CI/CD (with storing in artifact repo)
@@ -79,11 +79,11 @@ And then, in a deploy stage, we push the build artifact to the target env...
 Build a package for an api project with the build number, and push it to a central artifact repo location (here a local folder, but could be nexus or other)
 
 ```bash
-sh stage_apiproject.sh --api_project "bookstore" --build_version "1.0.1"
-sh stage_apiproject.sh --api_project "covid" --build_version "1.0.1"
-sh stage_apiproject.sh --api_project "uszip" --build_version "1.0.1"
-sh stage_apiproject.sh --api_project "sagtours" --build_version "1.0.1"
-sh stage_apiproject.sh --api_project "helloapi" --build_version "1.0.1"
+sh package_apiproject.sh --api_project "bookstore" --build_version "1.0.1"
+sh package_apiproject.sh --api_project "covid" --build_version "1.0.1"
+sh package_apiproject.sh --api_project "uszip" --build_version "1.0.1"
+sh package_apiproject.sh --api_project "sagtours" --build_version "1.0.1"
+sh package_apiproject.sh --api_project "helloapi" --build_version "1.0.1"
 ```
 
 ### Deploy to target environment
@@ -97,19 +97,19 @@ Get the api package deployed on artifact repo and perform the following:
 - run tests
 
 ```bash
-sh deploy_staged_apiproject.sh --api_project "bookstore" --build_version "1.0.1" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
+sh deploy_apiproject.sh --api_project_package "../staged/bookstore-1.0.1.zip" --stagename "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
 
-sh deploy_staged_apiproject.sh --api_project "covid" --build_version "1.0.1" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
+sh deploy_apiproject.sh --api_project_package "../staged/covid-1.0.1.zip" --stagename "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
 
-sh deploy_staged_apiproject.sh --api_project "uszip" --build_version "1.0.1" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
+sh deploy_apiproject.sh --api_project_package "../staged/uszip-1.0.1.zip" --stagename "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
 
-sh deploy_staged_apiproject.sh --api_project "sagtours" --build_version "1.0.1" --environment "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
+sh deploy_apiproject.sh --api_project_package "../staged/sagtours-1.0.1.zip" --stagename "qa" --apigateway_url $APIGW_QA_URL --username $APIGW_QA_DEPLOY_USER --password $APIGW_QA_DEPLOY_PASSWORD
 ```
 
 ## Run API Tests
 
 ```bash
-sh gateway_test_build.sh --api_project "bookstore" --build_version "1.0.1" --environment "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
-sh gateway_test_build.sh --api_project "covid" --build_version "1.0.1" --environment "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
-sh gateway_test_build.sh --api_project "uszip" --build_version "1.0.1" --environment "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
+sh test_apiproject.sh --api_project "bookstore" --build_version "1.0.1" --stagename "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
+sh test_apiproject.sh --api_project "covid" --build_version "1.0.1" --stagename "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
+sh test_apiproject.sh --api_project "uszip" --build_version "1.0.1" --stagename "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
 ```

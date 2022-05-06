@@ -56,7 +56,6 @@ ping_apigateway_server() {
 ## Usage: import_api <api_project> <url> <username> <password>
 ##############################################################################
 import_api() {
-
 	api_project=$1
 	url=$2
 	username=$3
@@ -78,23 +77,27 @@ import_api() {
 
 ##############################################################################
 ## Import an API to the API Gateway Server.
-## Usage: deploy_api <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
+## Usage: deploy_api <api_project> <stagename> <deploy_apigateway_url> <deploy_username> <deploy_password>
 ##############################################################################
-deploy_api() {
-	api_project="$1"
-	environment="$2"
+deploy_apiproject() {
+	apiproject_dir="$1"
+	stagename="$2"
+
 	url="$3"
 	username="$4"
 	password="$5"
 	
-	API_DIR=$BASEDIR/apis/$api_project
-	BIN_DIR="$THISDIR"
+	## first let's get the api build from the repo
+	if [ ! -d "$apiproject_dir" ]; then
+		echo "ERROR: $apiproject_dir does not exist...exit"
+		exit 10;
+	fi
 
 	## first let's stage the api
-	stage_api $API_DIR $environment
+	preps_stage_apiproject $apiproject_dir $stagename
 
 	## get staging dir
-	STAGING_PREPS_DIR=$(staging_preps_dir $API_DIR $environment)
+	STAGING_PREPS_DIR=$(staging_preps_dir $apiproject_dir $stagename)
 	API_ASSETS_DIR="$STAGING_PREPS_DIR/assets"
 
 	if [ -d "$API_ASSETS_DIR" ] 
@@ -106,79 +109,77 @@ deploy_api() {
 		echo "The staged API assets for $API_ASSETS_DIR do not exist..."
 		exit 10;
 	fi
-	cd $BIN_DIR
 }
 
 ##############################################################################
-## Stageing prep dir
-## Usage: staging_preps_dir <api_project_dir> <environment>
+## Staging prep dir
+## Usage: staging_preps_dir <api_project_dir> <stagename>
 ##############################################################################
 staging_preps_dir() {
 	api_project_dir=$1
-	environment=$2
-	echo $BASEDIR/staging_preps/$(basename $api_project_dir)/$environment
+	stagename=$2
+	echo $BASEDIR/tmp/deploy_preps/$(basename $api_project_dir)/$stagename
 }
 
 ##############################################################################
 ## Stage an API 
-## Usage: stage_api <api_project> <environment>
+## Usage: preps_stage_apiproject <api_project> <stagename>
 ##############################################################################
-stage_api() {
+preps_stage_apiproject() {
 	api_project_dir=$1
-	environment=$2
+	stagename=$2
 
-	BIN_DIR="$THISDIR"
-	
-	if [ -d "$api_project_dir" ]; then
-		STAGING_PREPS_DIR=$(staging_preps_dir $api_project_dir $environment)
-		API_ALIASES_DIR=$STAGING_PREPS_DIR/assets/Alias
-		API_ACDL_FILE=assets/APIGatewayAssets.acdl
+	## first let's get the api build from the repo
+	if [ ! -d "$api_project_dir" ]; then
+		echo "ERROR: $api_project_dir does not exist...exit"
+		exit 10;
+	fi
 
-		if [ -d "$STAGING_PREPS_DIR" ]; then
-			rm -Rf $STAGING_PREPS_DIR
-		fi
-		mkdir -p $STAGING_PREPS_DIR
-		cp -r $api_project_dir/* $STAGING_PREPS_DIR/
+	STAGING_PREPS_DIR=$(staging_preps_dir $api_project_dir $stagename)
+	API_ALIASES_DIR=$STAGING_PREPS_DIR/assets/Alias
+	API_ACDL_FILE=assets/APIGatewayAssets.acdl
 
-		## check if aliases file is defined
-		if [ -d "$API_ALIASES_DIR" ] ; then
-			if [ -f "$STAGING_PREPS_DIR/aliases.json" ] ; then
-				echo "Parsing the Alias files in $API_ALIASES_DIR"
-				for file in $API_ALIASES_DIR/*; do
-					filename=$(basename $file)
-					echo filename: $filename
+	if [ -d "$STAGING_PREPS_DIR" ]; then
+		rm -Rf $STAGING_PREPS_DIR
+	fi
+	mkdir -p $STAGING_PREPS_DIR
+	cp -r $api_project_dir/* $STAGING_PREPS_DIR/
 
-					aliasId="${filename#*.}"
-					echo aliasId: $aliasId
+	## check if aliases file is defined
+	if [ -d "$API_ALIASES_DIR" ] ; then
+		if [ -f "$STAGING_PREPS_DIR/aliases.json" ] ; then
+			echo "Parsing the Alias files in $API_ALIASES_DIR"
+			for file in $API_ALIASES_DIR/*; do
+				filename=$(basename $file)
+				echo filename: $filename
+		
+				aliasId="${filename#*.}"
+				echo aliasId: $aliasId
 
-					## first, let's check if alias exists...if not, let's fail??
-					newAliasEnv=$($JQ_EXE -c --arg id "$aliasId" '.[] | select( .id==$id ) | .'$environment $STAGING_PREPS_DIR/aliases.json)
-					if [ "$newAliasEnv" != "null" ] ; then
-						echo "Executing: $JQ_EXE -c --arg id "$aliasId" '.[] | select( .id==\$id ) | .'$environment' + { id : \$id }' $STAGING_PREPS_DIR/aliases.json"
-						newAlias=$($JQ_EXE -c --arg id "$aliasId" '.[] | select( .id==$id ) | .'$environment' + { id : $id }' $STAGING_PREPS_DIR/aliases.json)
-						echo "got new alias=$newAlias"
-						echo $newAlias > $file.new
-						cat $file $file.new | $JQ_EXE -s add > $file
-						rm -f $file.new
-					else
-						echo "No matching alias id $aliasId for environment $environment...Not doing any alias replacement and ignoring!"
-					fi
-				done
-			else
-				echo "No environment-aliases file found in $STAGING_PREPS_DIR/aliases.json...Not doing any alias replacement and ignoring!"
-			fi
-
-			## final cleanup of the ACDL file for the alias properties
-			## TODO: this is not ideal...defintely would be best using XML parser or other technique...
-			if [ -f $api_project_dir/$API_ACDL_FILE ] ; then
-				sed 's/<property/<!-- <property/gI; s/<\/property>/<\/property> -->/gI' "$api_project_dir/$API_ACDL_FILE" > $STAGING_PREPS_DIR/$API_ACDL_FILE
-			fi
+				## first, let's check if alias exists...if not, let's fail??
+				newAliasEnv=$($JQ_EXE -c --arg id "$aliasId" '.[] | select( .id==$id ) | .'$stagename $STAGING_PREPS_DIR/aliases.json)
+				if [ "$newAliasEnv" != "null" ] ; then
+					echo "Executing: $JQ_EXE -c --arg id "$aliasId" '.[] | select( .id==\$id ) | .'$stagename' + { id : \$id }' $STAGING_PREPS_DIR/aliases.json"
+					newAlias=$($JQ_EXE -c --arg id "$aliasId" '.[] | select( .id==$id ) | .'$stagename' + { id : $id }' $STAGING_PREPS_DIR/aliases.json)
+					echo "got new alias=$newAlias"
+					echo $newAlias > $file.new
+					cat $file $file.new | $JQ_EXE -s add > $file
+					rm -f $file.new
+				else
+					echo "No matching alias id $aliasId for stagename $stagename...Not doing any alias replacement and ignoring!"
+				fi
+			done
 		else
-			echo "No aliases found in $STAGING_PREPS_DIR"
+			echo "No stagename-aliases file found in $STAGING_PREPS_DIR/aliases.json...Not doing any alias replacement and ignoring!"
+		fi
+
+		## final cleanup of the ACDL file for the alias properties
+		## TODO: this is not ideal...defintely would be best using XML parser or other technique...
+		if [ -f $api_project_dir/$API_ACDL_FILE ] ; then
+			sed 's/<property/<!-- <property/gI; s/<\/property>/<\/property> -->/gI' "$api_project_dir/$API_ACDL_FILE" > $STAGING_PREPS_DIR/$API_ACDL_FILE
 		fi
 	else
-		echo "The API project dir $api_project_dir does not exists"
-		exit 10;
+		echo "No aliases found in $STAGING_PREPS_DIR"
 	fi
 }
 
@@ -186,27 +187,26 @@ stage_api() {
 ## Import an API to the API Gateway Server.
 ## Usage: deploy_api <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
 ##############################################################################
-stage_apiproject() {
+package_apiproject() {
 	api_project="$1"
 	build_version="$2"
-	#mock, here it should be a repo url like nexus etc...
-	target_repo_dir="$3"
-	create_repo_dir="$4"
+	stage_dir="$3"
+	create_stage_dir="$4"
 
 	BIN_DIR="$THISDIR"
 	API_DIR=$BASEDIR/apis/$api_project
 	
-	if [ "x$target_repo_dir" == "x" ]; then
-		echo "ERROR: $target_repo_dir i snot specified...exit"
+	if [ "x$stage_dir" == "x" ]; then
+		echo "ERROR: $stage_dir i snot specified...exit"
 		exit 10;
 	fi
 
-	if [ "$create_repo_dir" == "true" ]; then
-		mkdir -p $target_repo_dir
+	if [ "$create_stage_dir" == "true" ]; then
+		mkdir -p $stage_dir
 	fi
 
-	if [ ! -d "$target_repo_dir" ]; then
-		echo "ERROR: $target_repo_dir does not exist...exit"
+	if [ ! -d "$stage_dir" ]; then
+		echo "ERROR: $stage_dir does not exist...exit"
 		exit 10;
 	fi
 		
@@ -214,75 +214,12 @@ stage_apiproject() {
 	then
 		cd $API_DIR && zip -r $BASEDIR/$api_project-$build_version.zip ./*
 		
-		## copy to target_repo_dir
-		cp -f $BASEDIR/$api_project-$build_version.zip $target_repo_dir/
+		## copy to stage_dir
+		cp -f $BASEDIR/$api_project-$build_version.zip $stage_dir/
 
 		rm $BASEDIR/$api_project-$build_version.zip
 	else
 		echo "The API assets with name $api do not exist as a flat file."
-		exit 10;
-	fi
-	cd $BIN_DIR
-}
-
-##############################################################################
-## Staging build directory
-## Usage: staging_builds_dir <api_project> <build_version>
-##############################################################################
-staging_builds_dir() {
-	api_project=$1
-	build_version=$2
-	echo $BASEDIR/staging_builds/${api_project}-${build_version}
-}
-
-##############################################################################
-## Deploy an API project to the API Gateway Server.
-## Usage: deploy_staged_api <api_project> <environment> <deploy_apigateway_url> <deploy_username> <deploy_password>
-##############################################################################
-deploy_staged_api() {
-	## api build details
-	api_project="$1"
-	build_version="$2"
-	repo_dir="$3"
-
-	## target deploy details
-	environment="$4"
-	url="$5"
-	username="$6"
-	password="$7"
-	
-	BIN_DIR="$THISDIR"
-	API_DEPLOY_STAGE_DIR=$(staging_builds_dir $api_project $build_version)
-	API_ASSETS_DIR="$API_DEPLOY_STAGE_DIR/assets"
-
-	## first let's get the api build from the repo
-	if [ ! -d "$repo_dir" ]; then
-		echo "ERROR: $repo_dir does not exist...exit"
-		exit 10;
-	fi
-	
-	if [ ! -f "$repo_dir/$api_project-$build_version.zip" ]; then
-		echo "ERROR: $repo_dir/$api_project-$build_version.zip does not exist...exit"
-		exit 10;
-	fi
-
-	if [ -d "$API_DEPLOY_STAGE_DIR" ]; then
-		rm -Rf $API_DEPLOY_STAGE_DIR
-	fi
-	mkdir -p $API_DEPLOY_STAGE_DIR
-	unzip -o $repo_dir/$api_project-$build_version.zip -d $API_DEPLOY_STAGE_DIR/
-	
-	## then stage the api
-	stage_api $API_DEPLOY_STAGE_DIR $environment
-
-	## finally, deploy the staged api
-	if [ -d "$API_ASSETS_DIR" ] 
-	then
-		cd $API_ASSETS_DIR && zip -r $BASEDIR/$api_project.zip ./*
-		curl -sS -i -X POST "$url/rest/apigateway/archive?preserveAssetState=true&overwrite=*" -H "Content-Type:application/zip" -H"Accept:application/json" --data-binary @"$BASEDIR/$api_project.zip" -u $username:$password > /dev/null
-		rm $BASEDIR/$api_project.zip
-	else
-		echo "The staged API assets for $API_ASSETS_DIR do not exist..."
 		exit 10;
 	fi
 	cd $BIN_DIR
@@ -396,12 +333,10 @@ run_test() {
 ## Usage run_test_suite <test_suite> <environment_file_location> <api_gateway_server> <test_result_folder>
 ############################################################################################################################################################
 run_test_suite() {
-	## api build details
-	api_project="$1"
-	build_version="$2"
+	apiproject_dir="$1"
+	stagename="$2"
     test_suite="$3"
-	environment="$4"
-	env_vars="$5"
+	env_vars="$4"
 
 	ENVFILE_DIR=$BASEDIR/environments
 	ENVFILE=$ENVFILE_DIR/${environment}_environment.json

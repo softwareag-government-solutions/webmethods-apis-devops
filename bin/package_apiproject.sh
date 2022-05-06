@@ -80,7 +80,7 @@ main(){
   usage
   fi
 
-  stage_apiproject $api_project $build_version $repodir $createrepodir
+  package_apiproject $api_project $build_version $repodir $createrepodir
 }
 
 #Call the main function with all arguments passed in...

@@ -2,9 +2,6 @@ testresults/
 staged/
 tmp/
 
-staging_preps/
-staging_builds/
-
 .DS_Store
 .swp
 build/
