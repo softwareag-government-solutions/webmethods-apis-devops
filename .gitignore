@@ -1,5 +1,6 @@
 testresults/
 staged/
+tmp/
 
 staging_preps/
 staging_builds/
