@@ -323,7 +323,9 @@ run_test() {
  echo "- Environment File: $ENVFILE"
  echo "- Environment vars: $newman_environment"
  
- newman run $test_collection --reporters cli,junit,html --reporter-junit-export $result_folder/$RANDOM.xml -e $environment_file $newman_environment --reporter-html-export $result_folder/index.html
+ ## removing -e $environment_file 
+
+ newman run $test_collection --reporters cli,junit,html --reporter-junit-export $result_folder/$RANDOM.xml $newman_environment --reporter-html-export $result_folder/index.html
 }
 
 ############################################################################################################################################################
@@ -338,23 +340,17 @@ run_test_suite() {
     test_suite="$3"
 	env_vars="$4"
 
-	ENVFILE_DIR=$BASEDIR/environments
-	ENVFILE=$ENVFILE_DIR/${environment}_environment.json
+	ENVFILE_DIR="$BASEDIR/environments"
+	ENVFILE="$ENVFILE_DIR/${stagename}_environment.json"
 
-	API_DIR=
-	if [ "$build_version" != "local" ]; then
-		API_DIR=$BASEDIR/apis/$api_project
-	else
-		API_DIR=$(staging_builds_dir $api_project $build_version)
-	fi
-
- 	RESULT_FOLDER=$BASEDIR/testresults/$(basename $API_DIR)
+	API_DIR="$api_project_dir"
+	RESULT_FOLDER=$BASEDIR/testresults/$(basename $API_DIR)
 
 	if [ -d "$RESULT_FOLDER" ] 
 	then
 		rm -R $RESULT_FOLDER
 	fi
-	mkdir $RESULT_FOLDER
+	mkdir -p $RESULT_FOLDER
  
 	if [ -d "$API_DIR" ]; then
 		echo "Running tests for API project $API_DIR"

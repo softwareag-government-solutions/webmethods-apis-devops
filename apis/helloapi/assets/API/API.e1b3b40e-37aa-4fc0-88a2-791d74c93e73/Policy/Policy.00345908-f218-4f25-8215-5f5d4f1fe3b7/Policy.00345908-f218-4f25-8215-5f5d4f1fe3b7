@@ -28,6 +28,12 @@
     "stageKey" : "routing"
   }, {
     "enforcements" : [ {
+      "enforcementObjectId" : "c04fff4f-c785-41d1-822c-ad657a35f4ed",
+      "order" : "0"
+    } ],
+    "stageKey" : "IAM"
+  }, {
+    "enforcements" : [ {
       "enforcementObjectId" : "1f23eab2-dcd1-4fbf-aa67-faf45d2d0473",
       "order" : "0"
     } ],

@@ -90,7 +90,7 @@ main(){
 
   # if package path if provided, then potentially overwrite the path to the project
 	if [ -f "$api_project_package" ]; then
-    extract_dir="$api_package_extract_basedir/$(basename $api_project_package)/"
+    extract_dir="$api_package_extract_basedir/$(basename $api_project_package)"
     
     # clear extract dir if if was already there
     if [ -d "$extract_dir" ]; then
@@ -99,7 +99,7 @@ main(){
     mkdir -p $extract_dir
     
     # unzip package
-    unzip -o $api_project_package -d $extract_dir/
+    unzip -o $api_project_package -d $extract_dir
 
     # set new deploy dir
     api_project_dir=$extract_dir
