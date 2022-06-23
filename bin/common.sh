@@ -323,7 +323,6 @@ run_test() {
  if [ ! -z "$env_vars" ]
  then
     split $env_vars ";"
-	echo $env_vars_array
 	for i in "${env_vars_array[@]}"  
 	do  
 		newman_envvars_args="$newman_envvars_args --env-var $i"
