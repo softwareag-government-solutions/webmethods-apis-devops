@@ -345,8 +345,8 @@ run_test_suite() {
     test_suite="$3"
 	env_vars="$4"
 
-	ENVFILE_DIR="$BASEDIR/environments"
-	ENVFILE="$ENVFILE_DIR/${stagename}_environment.json"
+	ENVFILE_DIR="$BASEDIR/tests_envs"
+	ENVFILE="$ENVFILE_DIR/${stagename}.json"
 
 	API_DIR="$api_project_dir"
 	RESULT_FOLDER=$BASEDIR/testresults/$(basename $API_DIR)
