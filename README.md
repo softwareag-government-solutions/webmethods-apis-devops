@@ -109,7 +109,7 @@ sh deploy_apiproject.sh --api_project_package "../staged/sagtours-1.0.1.zip" --s
 ## Run API Tests
 
 ```bash
-sh test_apiproject.sh --api_project_package "../staged/bookstore-1.0.1.zip" --stagename "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
-sh test_apiproject.sh --api_project "covid" --build_version "1.0.1" --stagename "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
-sh test_apiproject.sh --api_project "uszip" --build_version "1.0.1" --stagename "qa" --testenvvars "apigateway_baseurl_qa=$APIGW_QA_URL"
+sh test_apiproject.sh --api_project_package "../staged/bookstore-1.0.1.zip" --stagename "qa" --testenvvars "baseUrl=$APIGW_QA_URL"
+sh test_apiproject.sh --api_project_package "../staged/covid-1.0.1.zip" --stagename "qa" --testenvvars "baseUrl=$APIGW_QA_URL"
+sh test_apiproject.sh --api_project_package "../staged/uszip-1.0.1.zip" --stagename "qa" --testenvvars "baseUrl=$APIGW_QA_URL"
 ```
