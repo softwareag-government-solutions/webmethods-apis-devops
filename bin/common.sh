@@ -304,28 +304,34 @@ export_configurations() {
 ############################################################################################################################################################
 run_test() {
  test_collection=$1
- environment_file=$2 
- result_folder=$3
+ result_folder=$2
+ environment_file=$3 
  env_vars=$4
+ 
+ echo "Running postman tests with environments:"
+ echo "- Environment File: $environment_file"
+ echo "- Environment vars: $env_vars"
 
- newman_environment=
+ newman_envfile_args=
+ if [ -f "$environment_file" ]; then
+	newman_envfile_args="-e $environment_file"
+ else
+	echo "Warning: Environment File could not be found [$environment_file] ... ignoring!"
+ fi
+
+ newman_envvars_args=
  if [ ! -z "$env_vars" ]
  then
     split $env_vars ";"
 	echo $env_vars_array
 	for i in "${env_vars_array[@]}"  
 	do  
-		newman_environment="$newman_environment --env-var $i"
+		newman_envvars_args="$newman_envvars_args --env-var $i"
 	done
  fi
 
- echo "Running postman tests with environments:"
- echo "- Environment File: $ENVFILE"
- echo "- Environment vars: $newman_environment"
- 
- ## removing -e $environment_file 
-
- newman run $test_collection --reporters cli,junit,html --reporter-junit-export $result_folder/$RANDOM.xml $newman_environment --reporter-html-export $result_folder/index.html
+ #run newman
+ newman run $test_collection --reporters cli,junit,html --reporter-junit-export $result_folder/$RANDOM.xml $newman_envfile_args $newman_envvars_args --reporter-html-export $result_folder/index.html
 }
 
 ############################################################################################################################################################
@@ -358,11 +364,11 @@ run_test_suite() {
 			if [ "$test_suite" = "all" ]; then 
 				echo "Running ALL tests in $API_DIR/tests"
 				for file in $API_DIR/tests/*; do
-					run_test $file $ENVFILE "$RESULT_FOLDER" "$env_vars"
+					run_test $file "$RESULT_FOLDER" "$ENVFILE" "$env_vars"
 				done
 			else
 				if [ -f "$API_DIR/tests/$test_suite" ]; then
-					run_test $API_DIR/tests/$test_suite $ENVFILE "$RESULT_FOLDER" "$env_vars"
+					run_test $API_DIR/tests/$test_suite "$RESULT_FOLDER" "$ENVFILE" "$env_vars"
 				else
 					echo "The API test suite with name $API_DIR/tests/$test_suite does not exists"
 					exit 10;
